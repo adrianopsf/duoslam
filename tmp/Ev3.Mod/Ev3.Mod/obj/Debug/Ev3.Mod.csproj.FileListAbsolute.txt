@@ -1,0 +1,26 @@
+c:\users\rendszergazda\documents\visual studio 2013\Projects\Ev3.Mod\Ev3.Mod\bin\Debug\Ev3.Mod.exe.config
+c:\users\rendszergazda\documents\visual studio 2013\Projects\Ev3.Mod\Ev3.Mod\bin\Debug\Ev3.Mod.exe
+c:\users\rendszergazda\documents\visual studio 2013\Projects\Ev3.Mod\Ev3.Mod\bin\Debug\Ev3.Mod.pdb
+c:\users\rendszergazda\documents\visual studio 2013\Projects\Ev3.Mod\Ev3.Mod\obj\Debug\Ev3.Mod.csprojResolveAssemblyReference.cache
+c:\users\rendszergazda\documents\visual studio 2013\Projects\Ev3.Mod\Ev3.Mod\obj\Debug\MainWindow.baml
+c:\users\rendszergazda\documents\visual studio 2013\Projects\Ev3.Mod\Ev3.Mod\obj\Debug\MainWindow.g.cs
+c:\users\rendszergazda\documents\visual studio 2013\Projects\Ev3.Mod\Ev3.Mod\obj\Debug\App.g.cs
+c:\users\rendszergazda\documents\visual studio 2013\Projects\Ev3.Mod\Ev3.Mod\obj\Debug\Ev3.Mod_MarkupCompile.cache
+c:\users\rendszergazda\documents\visual studio 2013\Projects\Ev3.Mod\Ev3.Mod\obj\Debug\Ev3.Mod.g.resources
+c:\users\rendszergazda\documents\visual studio 2013\Projects\Ev3.Mod\Ev3.Mod\obj\Debug\Ev3.Mod.Properties.Resources.resources
+c:\users\rendszergazda\documents\visual studio 2013\Projects\Ev3.Mod\Ev3.Mod\obj\Debug\Ev3.Mod.csproj.GenerateResource.Cache
+c:\users\rendszergazda\documents\visual studio 2013\Projects\Ev3.Mod\Ev3.Mod\obj\Debug\Ev3.Mod.exe
+c:\users\rendszergazda\documents\visual studio 2013\Projects\Ev3.Mod\Ev3.Mod\obj\Debug\Ev3.Mod.pdb
+F:\DuoSlam\tmp\Ev3.Mod\Ev3.Mod\bin\Debug\Ev3.Mod.exe.config
+F:\DuoSlam\tmp\Ev3.Mod\Ev3.Mod\obj\Debug\Ev3.Mod.exe
+F:\DuoSlam\tmp\Ev3.Mod\Ev3.Mod\obj\Debug\Ev3.Mod.pdb
+F:\DuoSlam\tmp\Ev3.Mod\Ev3.Mod\bin\Debug\Ev3.Mod.exe
+F:\DuoSlam\tmp\Ev3.Mod\Ev3.Mod\bin\Debug\Ev3.Mod.pdb
+F:\DuoSlam\tmp\Ev3.Mod\Ev3.Mod\obj\Debug\Ev3.Mod.csprojResolveAssemblyReference.cache
+F:\DuoSlam\tmp\Ev3.Mod\Ev3.Mod\obj\Debug\MainWindow.baml
+F:\DuoSlam\tmp\Ev3.Mod\Ev3.Mod\obj\Debug\MainWindow.g.cs
+F:\DuoSlam\tmp\Ev3.Mod\Ev3.Mod\obj\Debug\App.g.cs
+F:\DuoSlam\tmp\Ev3.Mod\Ev3.Mod\obj\Debug\Ev3.Mod_MarkupCompile.cache
+F:\DuoSlam\tmp\Ev3.Mod\Ev3.Mod\obj\Debug\Ev3.Mod.g.resources
+F:\DuoSlam\tmp\Ev3.Mod\Ev3.Mod\obj\Debug\Ev3.Mod.Properties.Resources.resources
+F:\DuoSlam\tmp\Ev3.Mod\Ev3.Mod\obj\Debug\Ev3.Mod.csproj.GenerateResource.Cache

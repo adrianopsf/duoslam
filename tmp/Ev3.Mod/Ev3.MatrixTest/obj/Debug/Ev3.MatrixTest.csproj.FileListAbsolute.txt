@@ -1,0 +1,13 @@
+F:\DuoSlam\tmp\Ev3.Mod\Ev3.MatrixTest\bin\Debug\Ev3.MatrixTest.exe.config
+F:\DuoSlam\tmp\Ev3.Mod\Ev3.MatrixTest\obj\Debug\MainWindow.baml
+F:\DuoSlam\tmp\Ev3.Mod\Ev3.MatrixTest\obj\Debug\MainWindow.g.cs
+F:\DuoSlam\tmp\Ev3.Mod\Ev3.MatrixTest\obj\Debug\App.g.cs
+F:\DuoSlam\tmp\Ev3.Mod\Ev3.MatrixTest\obj\Debug\Ev3.MatrixTest_MarkupCompile.cache
+F:\DuoSlam\tmp\Ev3.Mod\Ev3.MatrixTest\obj\Debug\Ev3.MatrixTest.g.resources
+F:\DuoSlam\tmp\Ev3.Mod\Ev3.MatrixTest\obj\Debug\Ev3.MatrixTest.Properties.Resources.resources
+F:\DuoSlam\tmp\Ev3.Mod\Ev3.MatrixTest\obj\Debug\Ev3.MatrixTest.csproj.GenerateResource.Cache
+F:\DuoSlam\tmp\Ev3.Mod\Ev3.MatrixTest\bin\Debug\Ev3.MatrixTest.exe
+F:\DuoSlam\tmp\Ev3.Mod\Ev3.MatrixTest\bin\Debug\Ev3.MatrixTest.pdb
+F:\DuoSlam\tmp\Ev3.Mod\Ev3.MatrixTest\obj\Debug\Ev3.MatrixTest.exe
+F:\DuoSlam\tmp\Ev3.Mod\Ev3.MatrixTest\obj\Debug\Ev3.MatrixTest.pdb
+F:\DuoSlam\tmp\Ev3.Mod\Ev3.MatrixTest\obj\Debug\Ev3.MatrixTest.csprojResolveAssemblyReference.cache

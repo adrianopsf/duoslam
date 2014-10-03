@@ -1,0 +1,11 @@
+﻿<Window x:Class="Ev3.MatrixTest.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MatrixTest" Height="400" Width="600" ResizeMode="NoResize">
+    <Grid>
+        <TextBlock x:Name="ma" Margin="29,95,417,136" Background="LightBlue"></TextBlock>
+        <TextBlock x:Name="mb" Margin="216,95,230,136" Background="LightSteelBlue"></TextBlock>
+        <TextBlock x:Name="mc" Margin="398,95,48,136" Background="LightYellow"></TextBlock>
+        <Button x:Name="b1" Click="b1_Click" Margin="29,23,417,297">Ok</Button>
+    </Grid>
+</Window>

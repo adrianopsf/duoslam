@@ -1,0 +1,13 @@
+F:\DuoSlam\tmp\Ev3.Mod\Ev3.DrawSensorTest\bin\Debug\Ev3.DrawSensorTest.exe.config
+F:\DuoSlam\tmp\Ev3.Mod\Ev3.DrawSensorTest\obj\Debug\Ev3.DrawSensorTest.csprojResolveAssemblyReference.cache
+F:\DuoSlam\tmp\Ev3.Mod\Ev3.DrawSensorTest\obj\Debug\MainWindow.baml
+F:\DuoSlam\tmp\Ev3.Mod\Ev3.DrawSensorTest\obj\Debug\MainWindow.g.cs
+F:\DuoSlam\tmp\Ev3.Mod\Ev3.DrawSensorTest\obj\Debug\App.g.cs
+F:\DuoSlam\tmp\Ev3.Mod\Ev3.DrawSensorTest\obj\Debug\Ev3.DrawSensorTest_MarkupCompile.cache
+F:\DuoSlam\tmp\Ev3.Mod\Ev3.DrawSensorTest\obj\Debug\Ev3.DrawSensorTest.g.resources
+F:\DuoSlam\tmp\Ev3.Mod\Ev3.DrawSensorTest\obj\Debug\Ev3.DrawSensorTest.Properties.Resources.resources
+F:\DuoSlam\tmp\Ev3.Mod\Ev3.DrawSensorTest\obj\Debug\Ev3.DrawSensorTest.csproj.GenerateResource.Cache
+F:\DuoSlam\tmp\Ev3.Mod\Ev3.DrawSensorTest\bin\Debug\Ev3.DrawSensorTest.exe
+F:\DuoSlam\tmp\Ev3.Mod\Ev3.DrawSensorTest\bin\Debug\Ev3.DrawSensorTest.pdb
+F:\DuoSlam\tmp\Ev3.Mod\Ev3.DrawSensorTest\obj\Debug\Ev3.DrawSensorTest.exe
+F:\DuoSlam\tmp\Ev3.Mod\Ev3.DrawSensorTest\obj\Debug\Ev3.DrawSensorTest.pdb
