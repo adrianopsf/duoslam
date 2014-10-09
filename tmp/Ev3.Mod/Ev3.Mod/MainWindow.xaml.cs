@@ -82,7 +82,12 @@ namespace Ev3.Mod
 
         private void sliderDeltaTChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            txDeltaT.Text = String.Format("{0,12:C2}", sliderDeltaT.Value);
+            try
+            {
+                txDeltaT.Text = String.Format("{0,12:C2}", sliderDeltaT.Value);
+                rm.deltaT = sliderDeltaT.Value;
+            }
+            catch { }//todo
         }
         private void sliderLoopChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {

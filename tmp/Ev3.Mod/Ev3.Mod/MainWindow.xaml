@@ -8,9 +8,9 @@
         </StackPanel>
         <StackPanel HorizontalAlignment="Right" Width="200">
             <TextBlock FontSize="30" x:Name="txVl">Vl:</TextBlock>
-            <Slider Minimum="-100" Maximum="100" x:Name="sliderVLeft" Value="10" ValueChanged="sliderVLeftChanged" Foreground="Black"></Slider>
+            <Slider Minimum="-100" Maximum="100" x:Name="sliderVLeft" Value="80" ValueChanged="sliderVLeftChanged" Foreground="Black"></Slider>
             <TextBlock FontSize="30" x:Name="txVr">Vr:</TextBlock>
-            <Slider Minimum="-100" Maximum="100" x:Name="sliderVRight" ValueChanged="sliderVRightChanged"></Slider>
+            <Slider Minimum="-100" Maximum="100" x:Name="sliderVRight" Value="10" ValueChanged="sliderVRightChanged"></Slider>
             <Grid>
                 <Button Width="50" Height="50" Margin="4" Grid.Column="0" Content="Straight" Click="StraightClick"/>
                 <Button Width="50" Height="50" Margin="4" Grid.Column="1" Content="Left" Click="LeftClick"/>
@@ -23,7 +23,7 @@
                 </Grid.ColumnDefinitions>
             </Grid>
             <Grid>
-                <Slider Minimum="0" Maximum="1000" Margin="4" x:Name="sliderDeltaT" ValueChanged="sliderDeltaTChanged" Grid.Column="0"></Slider>
+                <Slider Minimum="0.01" Maximum="4" Margin="4" x:Name="sliderDeltaT" ValueChanged="sliderDeltaTChanged" Grid.Column="0"></Slider>
                 <TextBlock Width="50"  Margin="4" Grid.Column="1" x:Name="txDeltaT" >1dT</TextBlock>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="160"/>

@@ -1,0 +1,15 @@
+C:\Ev3\Ev3.Elso\Ev3.Elso\Ev3.Elso\bin\Debug\Ev3.Elso.exe.config
+C:\Ev3\Ev3.Elso\Ev3.Elso\Ev3.Elso\bin\Debug\Ev3.Elso.exe
+C:\Ev3\Ev3.Elso\Ev3.Elso\Ev3.Elso\bin\Debug\Ev3.Elso.pdb
+C:\Ev3\Ev3.Elso\Ev3.Elso\Ev3.Elso\bin\Debug\Lego.Ev3.Desktop.dll
+C:\Ev3\Ev3.Elso\Ev3.Elso\Ev3.Elso\bin\Debug\Lego.Ev3.Desktop.xml
+C:\Ev3\Ev3.Elso\Ev3.Elso\Ev3.Elso\obj\Debug\Ev3.Elso.csprojResolveAssemblyReference.cache
+C:\Ev3\Ev3.Elso\Ev3.Elso\Ev3.Elso\obj\Debug\MainWindow.baml
+C:\Ev3\Ev3.Elso\Ev3.Elso\Ev3.Elso\obj\Debug\MainWindow.g.cs
+C:\Ev3\Ev3.Elso\Ev3.Elso\Ev3.Elso\obj\Debug\App.g.cs
+C:\Ev3\Ev3.Elso\Ev3.Elso\Ev3.Elso\obj\Debug\Ev3.Elso_MarkupCompile.cache
+C:\Ev3\Ev3.Elso\Ev3.Elso\Ev3.Elso\obj\Debug\Ev3.Elso.g.resources
+C:\Ev3\Ev3.Elso\Ev3.Elso\Ev3.Elso\obj\Debug\Ev3.Elso.Properties.Resources.resources
+C:\Ev3\Ev3.Elso\Ev3.Elso\Ev3.Elso\obj\Debug\Ev3.Elso.csproj.GenerateResource.Cache
+C:\Ev3\Ev3.Elso\Ev3.Elso\Ev3.Elso\obj\Debug\Ev3.Elso.exe
+C:\Ev3\Ev3.Elso\Ev3.Elso\Ev3.Elso\obj\Debug\Ev3.Elso.pdb

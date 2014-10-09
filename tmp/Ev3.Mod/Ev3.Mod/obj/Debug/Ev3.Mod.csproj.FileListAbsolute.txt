@@ -24,3 +24,16 @@ F:\DuoSlam\tmp\Ev3.Mod\Ev3.Mod\obj\Debug\Ev3.Mod_MarkupCompile.cache
 F:\DuoSlam\tmp\Ev3.Mod\Ev3.Mod\obj\Debug\Ev3.Mod.g.resources
 F:\DuoSlam\tmp\Ev3.Mod\Ev3.Mod\obj\Debug\Ev3.Mod.Properties.Resources.resources
 F:\DuoSlam\tmp\Ev3.Mod\Ev3.Mod\obj\Debug\Ev3.Mod.csproj.GenerateResource.Cache
+C:\DuoSlam\tmp\Ev3.Mod\Ev3.Mod\bin\Debug\Ev3.Mod.exe.config
+C:\DuoSlam\tmp\Ev3.Mod\Ev3.Mod\obj\Debug\Ev3.Mod.exe
+C:\DuoSlam\tmp\Ev3.Mod\Ev3.Mod\obj\Debug\Ev3.Mod.pdb
+C:\DuoSlam\tmp\Ev3.Mod\Ev3.Mod\bin\Debug\Ev3.Mod.exe
+C:\DuoSlam\tmp\Ev3.Mod\Ev3.Mod\bin\Debug\Ev3.Mod.pdb
+C:\DuoSlam\tmp\Ev3.Mod\Ev3.Mod\obj\Debug\Ev3.Mod.csprojResolveAssemblyReference.cache
+C:\DuoSlam\tmp\Ev3.Mod\Ev3.Mod\obj\Debug\MainWindow.baml
+C:\DuoSlam\tmp\Ev3.Mod\Ev3.Mod\obj\Debug\MainWindow.g.cs
+C:\DuoSlam\tmp\Ev3.Mod\Ev3.Mod\obj\Debug\App.g.cs
+C:\DuoSlam\tmp\Ev3.Mod\Ev3.Mod\obj\Debug\Ev3.Mod_MarkupCompile.cache
+C:\DuoSlam\tmp\Ev3.Mod\Ev3.Mod\obj\Debug\Ev3.Mod.g.resources
+C:\DuoSlam\tmp\Ev3.Mod\Ev3.Mod\obj\Debug\Ev3.Mod.Properties.Resources.resources
+C:\DuoSlam\tmp\Ev3.Mod\Ev3.Mod\obj\Debug\Ev3.Mod.csproj.GenerateResource.Cache

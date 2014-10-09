@@ -68,8 +68,8 @@ namespace Ev3.Mod
             _iccy = _y;
             m[0, 0] = m[1, 0] = m[2, 0] = 0;
             _l = 1.2;
-            _omega = 20;
-            _deltaT = 100;
+            _omega = 0.1;
+            _deltaT = 0.1;
 
         }
         public double x
@@ -158,20 +158,21 @@ namespace Ev3.Mod
             _omega = (_vr - _vl) / _l;
             return _omega;
         }
-        public double[,] Update(double vl, double vr)
+        public void Update(double vl, double vr)
         {
             //todo works, but needs to be refactored
-            _vr = Math.Round(vr);
-            _vl = Math.Round(vl);
+            //_vr = Math.Round(vr);
+            //_vl = Math.Round(vl);
             if (_vr == _vl)
             {
-                _x = _x + _vr * Math.Cos(GetThetaRad()) * _deltaT;
+                _x = _x + _vr * Math.Cos(GetThetaRad()) * _deltaT; //overshoot here! todo:fix
                 _y = _y + _vr * Math.Sin(GetThetaRad()) * _deltaT;
             }
             else if (_vl == -_vr || _vr == -_vl)
             {
                 AddThetaDeg(2 * _vr * _deltaT / _l);
             }
+            
             else
             {
                 double ix = GetIccX();
@@ -205,9 +206,6 @@ namespace Ev3.Mod
                 _y = m[1, 0];
                 _theta = m[2, 0];
             }
-
-
-            return m;
         }
 
         public void MatrixDisplay(double[,] m)
