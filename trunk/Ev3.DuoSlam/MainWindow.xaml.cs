@@ -44,6 +44,10 @@ namespace Ev3.DuoSlam
         /// Defines if scaning is on
         /// </summary>
         bool _scan = false;
+        /// <summary>
+        /// The start position of the sensormotor
+        /// </summary>
+        float _sensorStartPos = 0;
 
         public MainWindow()
         {
@@ -53,6 +57,7 @@ namespace Ev3.DuoSlam
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             stackControls.Visibility = Visibility.Hidden;
+            buttonScan.Visibility = Visibility.Hidden;
         }
 
         void _brick_BrickChanged(object sender, BrickChangedEventArgs e)
@@ -62,6 +67,7 @@ namespace Ev3.DuoSlam
             _sensorMotorPos = e.Ports[InputPort.A].SIValue;
             _infraSensor = e.Ports[InputPort.Three].SIValue;
             _ultraSensor = e.Ports[InputPort.Four].SIValue;
+            e.Ports[InputPort.Four].SetMode(1);
             txtInfra.Text = "Infra: " + _infraSensor;
             txtUltra.Text = "Ultra: " + _ultraSensor;
             txtMotor.Text = "Motor: " + _sensorMotorPos;
@@ -70,13 +76,13 @@ namespace Ev3.DuoSlam
                 if (_scanEdge)
                 {
                     _brick.DirectCommand.StepMotorAtSpeedAsync(OutputPort.A, 25, 10, true);
-                    if (_sensorMotorPos >= -40)
+                    if (_sensorMotorPos >= _sensorStartPos + 80)
                         _scanEdge = false;
                 }
                 else
                 {
                     _brick.DirectCommand.StepMotorAtSpeedAsync(OutputPort.A, -30, 10, true);
-                    if (_sensorMotorPos <= -230)
+                    if (_sensorMotorPos <= _sensorStartPos - 80)
                         _scanEdge = true;
                 }
                 
@@ -144,6 +150,7 @@ namespace Ev3.DuoSlam
                     _connected = true;
                     stackControls.Visibility = Visibility.Visible;
                     buttonConnect.Content = "Disconnect";
+                    //setmode
                 }
                 catch (Exception)
                 {
@@ -186,6 +193,23 @@ namespace Ev3.DuoSlam
                 X2 = (int)(100 + x),
                 Y2 = (int)(150 + y)
             });
+        }
+
+        private void SensorMotorLeftClick(object sender, RoutedEventArgs e)
+        {
+            _brick.DirectCommand.StepMotorAtSpeedAsync(OutputPort.A, 50, 10, true);
+        }
+
+        private void SensorMotorRightClick(object sender, RoutedEventArgs e)
+        {
+            _brick.DirectCommand.StepMotorAtSpeedAsync(OutputPort.A, -50, 10, true);
+        }
+
+        private void SetSensorMotorStartClick(object sender, RoutedEventArgs e)
+        {
+            _sensorStartPos = _sensorMotorPos;
+            MessageBox.Show("Sensor motor start postion (middle of the scanning process) os now: " + _sensorStartPos);
+            buttonScan.Visibility = Visibility.Visible;
         }
 
     }
