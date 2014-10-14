@@ -13,6 +13,9 @@
             <Button Click="RightClick" Margin="4" >Right</Button>
             <Button Click="ClearClick" Margin="4" >Clear canvas</Button>
             <Button Click="ScanClick" Margin="4" Background="DarkGray" x:Name="buttonScan" Height="30">Scan</Button>
+            <Button Click="SensorMotorLeftClick">SensorMotorLeft</Button>
+            <Button Click="SensorMotorRightClick">SensorMotorRight</Button>
+            <Button Click="SetSensorMotorStartClick">SetSensorMotorStart</Button>
             <TextBlock x:Name="txtUltra" Text="UltraSonic" FontSize="30"></TextBlock>
             <TextBlock x:Name="txtInfra" Text="InfraRed" FontSize="30"></TextBlock>
             <TextBlock x:Name="txtMotor" Text="Motor" FontSize="30"></TextBlock>
