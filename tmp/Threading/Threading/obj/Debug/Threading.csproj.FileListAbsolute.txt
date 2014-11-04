@@ -1,0 +1,13 @@
+c:\users\herno_000\documents\visual studio 2012\Projects\Threading\Threading\bin\Debug\Threading.exe.config
+c:\users\herno_000\documents\visual studio 2012\Projects\Threading\Threading\bin\Debug\Threading.exe
+c:\users\herno_000\documents\visual studio 2012\Projects\Threading\Threading\bin\Debug\Threading.pdb
+c:\users\herno_000\documents\visual studio 2012\Projects\Threading\Threading\obj\Debug\Threading.csprojResolveAssemblyReference.cache
+c:\users\herno_000\documents\visual studio 2012\Projects\Threading\Threading\obj\Debug\MainWindow.baml
+c:\users\herno_000\documents\visual studio 2012\Projects\Threading\Threading\obj\Debug\MainWindow.g.cs
+c:\users\herno_000\documents\visual studio 2012\Projects\Threading\Threading\obj\Debug\App.g.cs
+c:\users\herno_000\documents\visual studio 2012\Projects\Threading\Threading\obj\Debug\Threading_MarkupCompile.cache
+c:\users\herno_000\documents\visual studio 2012\Projects\Threading\Threading\obj\Debug\Threading.g.resources
+c:\users\herno_000\documents\visual studio 2012\Projects\Threading\Threading\obj\Debug\Threading.Properties.Resources.resources
+c:\users\herno_000\documents\visual studio 2012\Projects\Threading\Threading\obj\Debug\Threading.csproj.GenerateResource.Cache
+c:\users\herno_000\documents\visual studio 2012\Projects\Threading\Threading\obj\Debug\Threading.exe
+c:\users\herno_000\documents\visual studio 2012\Projects\Threading\Threading\obj\Debug\Threading.pdb
