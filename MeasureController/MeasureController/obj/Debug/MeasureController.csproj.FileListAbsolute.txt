@@ -1,0 +1,15 @@
+D:\MVC\MeasureController\MeasureController\bin\Debug\MeasureController.exe.config
+D:\MVC\MeasureController\MeasureController\bin\Debug\MeasureController.exe
+D:\MVC\MeasureController\MeasureController\bin\Debug\MeasureController.pdb
+D:\MVC\MeasureController\MeasureController\obj\Debug\MeasureController.csprojResolveAssemblyReference.cache
+D:\MVC\MeasureController\MeasureController\obj\Debug\MainWindow.baml
+D:\MVC\MeasureController\MeasureController\obj\Debug\MainWindow.g.cs
+D:\MVC\MeasureController\MeasureController\obj\Debug\App.g.cs
+D:\MVC\MeasureController\MeasureController\obj\Debug\MeasureController_MarkupCompile.cache
+D:\MVC\MeasureController\MeasureController\obj\Debug\MeasureController.g.resources
+D:\MVC\MeasureController\MeasureController\obj\Debug\MeasureController.Properties.Resources.resources
+D:\MVC\MeasureController\MeasureController\obj\Debug\MeasureController.csproj.GenerateResource.Cache
+D:\MVC\MeasureController\MeasureController\obj\Debug\MeasureController.exe
+D:\MVC\MeasureController\MeasureController\obj\Debug\MeasureController.pdb
+D:\MVC\MeasureController\MeasureController\bin\Debug\Lego.Ev3.Desktop.dll
+D:\MVC\MeasureController\MeasureController\bin\Debug\Lego.Ev3.Desktop.xml
