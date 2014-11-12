@@ -12,36 +12,50 @@ namespace MeasureController.ViewModels
 {
     public class MainPageViewModel
     {
-
+        public List<Measure.Measure> MeasureList { get; set; }
         private Brick MyBrick;
         public MainPageViewModel()
         {
             MeasureList = new List<Measure.Measure>();
         }
-        public List<Measure.Measure> MeasureList { get; set; }
-        
-        public async void Scanning()
+        public async void StartScan()
         {
-            //Thread t = new Thread();
-            for (int i = 0; i < 20; i++)
-            {
-                await MyBrick.DirectCommand.StepMotorAtPowerAsync(OutputPort.A, 30, 2, true);
-                MyBrick.BrickChanged += MyBrick_BrickChanged;
-            }
-           
-            
+            MyBrick.BrickChanged += MyBrick_BrickChanged;
+            await Scan();
         }
+        private async Task Scan()
+        {
+            int j = 0;
+            for (int i = 0; i < 60; i++)
+            {
+                await MyBrick.DirectCommand.StepMotorAtPowerAsync(OutputPort.A, 90, 4, true);
+                await Task.Delay(200);
+                MyBrick.BrickChanged += MyBrick_BrickChanged;
+                j++;
+                Debug.WriteLine(j + "");
+            }
+            j = 0;
+            for (int i = 0; i < 60; i++)
+            {
+                await MyBrick.DirectCommand.StepMotorAtPowerAsync(OutputPort.A, -90, 4, true);
+                await Task.Delay(200);
 
+                j++;
+                Debug.WriteLine(j + "");
+            }
+        }
         private void MyBrick_BrickChanged(object sender, BrickChangedEventArgs e)
         {
-            Measure.Measure measure = new Measure.Measure() {MotorDataSI=e.Ports[InputPort.Three].SIValue, SensorDataSI=e.Ports[InputPort.A].SIValue};
-            Debug.WriteLine("Data: "+measure.MotorDataSI);
-            
+
+            Measure.Measure measure = new Measure.Measure() { MotorDataSI = e.Ports[InputPort.A].SIValue, SensorDataSI = e.Ports[InputPort.Four].SIValue };
+            MeasureList.Add(measure);
             MyBrick.BrickChanged -= MyBrick_BrickChanged;
         }
-
-
-
+        public void ControllDirection(int power)
+        {
+            MyBrick.DirectCommand.StepMotorAtSpeedAsync(OutputPort.A, power, 10, true);
+        }
+        #region ConnectDisconnect
         public void Close()
         {
             MyBrick.DirectCommand.PlayToneAsync(7, 200, 300);
@@ -50,36 +64,21 @@ namespace MeasureController.ViewModels
 
         public async Task ConnectToRobot()
         {
-            bool _connected = false;
-            if (!_connected)
+            MyBrick = new Brick(new BluetoothCommunication("COM3"));
+
+            try
             {
-                MyBrick = new Brick(new BluetoothCommunication("COM3"));
-
-                try
-                {
-                    await MyBrick.ConnectAsync();
-                    await MyBrick.DirectCommand.PlayToneAsync(5, 1000, 300);
-
-                    _connected = true;
-
-                }
-                catch (Exception)
-                {
-
-                    MessageBox.Show("No connection :(");
-                    _connected = false;
-                }
+                await MyBrick.ConnectAsync();
+                await MyBrick.DirectCommand.PlayToneAsync(5, 1000, 300);
             }
-        }
+            catch (Exception)
+            {
+                MessageBox.Show("No connection :(");
+            }
 
-        public void RightClick()
-        {
-            MyBrick.DirectCommand.StepMotorAtSpeedAsync(OutputPort.A, 50, 2, true);            
-        }
+        #endregion
 
-        public void LeftClick()
-        {
-            MyBrick.DirectCommand.StepMotorAtSpeedAsync(OutputPort.A, -50, 2, true);
+
         }
     }
 }

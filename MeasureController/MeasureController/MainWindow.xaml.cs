@@ -38,17 +38,17 @@ namespace MeasureController
         public  void Scan(object sender, RoutedEventArgs e)
         {
             
-            mainPageViewModel.Scanning();
+            mainPageViewModel.StartScan();
         }
 
         public void Left_Click(object sender, RoutedEventArgs e)
         {
-            mainPageViewModel.LeftClick();
+            mainPageViewModel.ControllDirection(-50);
         }
 
         public void Right_Click(object sender, RoutedEventArgs e)
         {
-            mainPageViewModel.RightClick();
+            mainPageViewModel.ControllDirection(50);
         }
 
         public void Window_Closed(object sender, EventArgs e)
