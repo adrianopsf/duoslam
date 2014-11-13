@@ -1,12 +1,14 @@
 ﻿<Window x:Class="MeasureController.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="350" Width="525" Loaded="Window_Loaded" Closed="Window_Closed">
+        Title="MainWindow" Height="350" Width="525" Loaded="Window_Loaded">
     
     <StackPanel>
         <Button Content="Initialize" Width="100" HorizontalAlignment="Left" VerticalAlignment="Top" Height="20" Click="Scan"/>
         <Button Content="Left" Width="100" HorizontalAlignment="Left" VerticalAlignment="Top" Height="20" Click="Left_Click"/>
         <Button Content="Right" Width="100" HorizontalAlignment="Left" VerticalAlignment="Top" Height="20" Click="Right_Click"/>
+        <Button Content="GOMB" Width="100" HorizontalAlignment="Left" VerticalAlignment="Top" Height="20" Click="GOMB"/>
+        <Button Content="{Binding ConnectionText}" Width="100" HorizontalAlignment="Left" VerticalAlignment="Top" Height="20" Click="Connect_Click"/>
         <TextBlock TextWrapping="Wrap" Text=""/>
     </StackPanel>
 </Window>

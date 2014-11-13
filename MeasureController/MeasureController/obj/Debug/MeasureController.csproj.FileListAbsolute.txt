@@ -28,3 +28,18 @@ D:\LEGOROBOT\MeasureController\MeasureController\obj\Debug\MeasureController.exe
 D:\LEGOROBOT\MeasureController\MeasureController\obj\Debug\MeasureController.pdb
 D:\LEGOROBOT\MeasureController\MeasureController\bin\Debug\MeasureController.pdb
 D:\LEGOROBOT\MeasureController\MeasureController\obj\Debug\MeasureController.csprojResolveAssemblyReference.cache
+C:\Users\Hallgato\Desktop\Lego Robot\MeasureController\MeasureController\bin\Debug\MeasureController.exe.config
+C:\Users\Hallgato\Desktop\Lego Robot\MeasureController\MeasureController\obj\Debug\MeasureController.exe
+C:\Users\Hallgato\Desktop\Lego Robot\MeasureController\MeasureController\obj\Debug\MeasureController.pdb
+C:\Users\Hallgato\Desktop\Lego Robot\MeasureController\MeasureController\bin\Debug\MeasureController.exe
+C:\Users\Hallgato\Desktop\Lego Robot\MeasureController\MeasureController\bin\Debug\MeasureController.pdb
+C:\Users\Hallgato\Desktop\Lego Robot\MeasureController\MeasureController\bin\Debug\Lego.Ev3.Desktop.dll
+C:\Users\Hallgato\Desktop\Lego Robot\MeasureController\MeasureController\bin\Debug\Lego.Ev3.Desktop.xml
+C:\Users\Hallgato\Desktop\Lego Robot\MeasureController\MeasureController\obj\Debug\MeasureController.csprojResolveAssemblyReference.cache
+C:\Users\Hallgato\Desktop\Lego Robot\MeasureController\MeasureController\obj\Debug\MainWindow.baml
+C:\Users\Hallgato\Desktop\Lego Robot\MeasureController\MeasureController\obj\Debug\MainWindow.g.cs
+C:\Users\Hallgato\Desktop\Lego Robot\MeasureController\MeasureController\obj\Debug\App.g.cs
+C:\Users\Hallgato\Desktop\Lego Robot\MeasureController\MeasureController\obj\Debug\MeasureController_MarkupCompile.cache
+C:\Users\Hallgato\Desktop\Lego Robot\MeasureController\MeasureController\obj\Debug\MeasureController.g.resources
+C:\Users\Hallgato\Desktop\Lego Robot\MeasureController\MeasureController\obj\Debug\MeasureController.Properties.Resources.resources
+C:\Users\Hallgato\Desktop\Lego Robot\MeasureController\MeasureController\obj\Debug\MeasureController.csproj.GenerateResource.Cache

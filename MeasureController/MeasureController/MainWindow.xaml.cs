@@ -28,36 +28,37 @@ namespace MeasureController
         {
             InitializeComponent();
         }
+
         private async void Window_Loaded(object sender, RoutedEventArgs e)
         {
             mainPageViewModel = new MainPageViewModel();
-            await mainPageViewModel.ConnectToRobot();
+            DataContext = mainPageViewModel;
         }
 
-
-        public  void Scan(object sender, RoutedEventArgs e)
-        {
-            
+        private  void Scan(object sender, RoutedEventArgs e)
+        {            
             mainPageViewModel.StartScan();
         }
 
-        public void Left_Click(object sender, RoutedEventArgs e)
+        private void Left_Click(object sender, RoutedEventArgs e)
         {
             mainPageViewModel.ControllDirection(-50);
         }
 
-        public void Right_Click(object sender, RoutedEventArgs e)
+        private void Right_Click(object sender, RoutedEventArgs e)
         {
             mainPageViewModel.ControllDirection(50);
         }
 
-        public void Window_Closed(object sender, EventArgs e)
+        private async void Connect_Click(object sender, RoutedEventArgs e)
         {
-            mainPageViewModel.Close();
-  
-           
+            await mainPageViewModel.ConnectToRobot();
         }
 
+        private void GOMB(object sender, RoutedEventArgs e)
+        {
+            mainPageViewModel.GOMF();
+        }
 
     }
 }
