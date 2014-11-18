@@ -58,3 +58,17 @@ D:\Lego Robot\MeasureController\MeasureController\obj\Debug\MeasureController_Ma
 D:\Lego Robot\MeasureController\MeasureController\obj\Debug\MeasureController.g.resources
 D:\Lego Robot\MeasureController\MeasureController\obj\Debug\MeasureController.Properties.Resources.resources
 D:\Lego Robot\MeasureController\MeasureController\obj\Debug\MeasureController.csproj.GenerateResource.Cache
+C:\LegoRobot\MeasureController\MeasureController\bin\Debug\MeasureController.exe.config
+C:\LegoRobot\MeasureController\MeasureController\obj\Debug\MeasureController.exe
+C:\LegoRobot\MeasureController\MeasureController\obj\Debug\MeasureController.pdb
+C:\LegoRobot\MeasureController\MeasureController\bin\Debug\MeasureController.exe
+C:\LegoRobot\MeasureController\MeasureController\bin\Debug\MeasureController.pdb
+C:\LegoRobot\MeasureController\MeasureController\bin\Debug\Lego.Ev3.Desktop.dll
+C:\LegoRobot\MeasureController\MeasureController\bin\Debug\Lego.Ev3.Desktop.xml
+C:\LegoRobot\MeasureController\MeasureController\obj\Debug\MainWindow.baml
+C:\LegoRobot\MeasureController\MeasureController\obj\Debug\MainWindow.g.cs
+C:\LegoRobot\MeasureController\MeasureController\obj\Debug\App.g.cs
+C:\LegoRobot\MeasureController\MeasureController\obj\Debug\MeasureController_MarkupCompile.cache
+C:\LegoRobot\MeasureController\MeasureController\obj\Debug\MeasureController.g.resources
+C:\LegoRobot\MeasureController\MeasureController\obj\Debug\MeasureController.Properties.Resources.resources
+C:\LegoRobot\MeasureController\MeasureController\obj\Debug\MeasureController.csproj.GenerateResource.Cache

@@ -42,15 +42,15 @@ namespace MeasureController.ViewModels
         public async void StartScan()
         {
             MyBrick.BrickChanged += MyBrick_BrickChanged;
-            await ScanFromLeft(90);
-            await ScanFromLeft(-90);
+            await ScanFromRight(90);
+            await ScanFromRight(-90);
         }
 
-        private async Task ScanFromLeft(int power)
+        private async Task ScanFromRight(int power)
         {
             for (int i = 0; i < 30; i++)
             {
-                await MyBrick.DirectCommand.StepMotorAtPowerAsync(OutputPort.A, power, 8, true);
+                await MyBrick.DirectCommand.StepMotorAtPowerAsync(OutputPort.A, -power, 8, true);
                 await Task.Delay(300);
                 MyBrick.BrickChanged += MyBrick_BrickChanged;
                 Debug.WriteLine(i + "");
@@ -61,8 +61,7 @@ namespace MeasureController.ViewModels
         {
             Models.Measure measure = new Models.Measure() { MotorDataSI = e.Ports[InputPort.A].SIValue, SensorDataSI = e.Ports[InputPort.Four].SIValue };
             MeasureList.Add(measure);
-            var ga = e.Ports[InputPort.Four].RawValue;
-            Debug.WriteLine("GOMB: " + ga);
+           
             MyBrick.BrickChanged -= MyBrick_BrickChanged;
         }
 
@@ -117,7 +116,7 @@ namespace MeasureController.ViewModels
 
         public async void TurnRight()
         {
-            MyBrick.BatchCommand.StepMotorAtPower(OutputPort.B, 40,  239, true);
+            MyBrick.BatchCommand.StepMotorAtPower(OutputPort.B, 40, 239, true);
             MyBrick.BatchCommand.StepMotorAtPower(OutputPort.C, -40, 239, true);
             await MyBrick.BatchCommand.SendCommandAsync();
         }
@@ -128,6 +127,40 @@ namespace MeasureController.ViewModels
             MyBrick.BatchCommand.StepMotorAtPower(OutputPort.B, -40, 239, true);
             MyBrick.BatchCommand.StepMotorAtPower(OutputPort.C, 40, 239, true);
             await MyBrick.BatchCommand.SendCommandAsync();
+        }
+        public async Task MoveScannarToStartposition()
+        {
+           
+                while (MyBrick.Ports[InputPort.Four].RawValue <= 1000)
+                {
+                    await MyBrick.DirectCommand.TurnMotorAtPowerForTimeAsync(OutputPort.A, 30, 50, true); 
+                    await Task.Delay(50);
+                }
+            
+        }
+
+        public async Task Scan2()
+        {
+          //  List<float> distance = new List<float>();
+                await MoveScannarToStartposition();  
+           
+            for (int i = 0; i < 37; i++)
+            {
+                await MyBrick.DirectCommand.StepMotorAtPowerAsync(OutputPort.A, -35, 8, true);
+                await Task.Delay(300);
+                MyBrick.BrickChanged += MyBrick_BrickChanged;
+              //  float dst = MyBrick.Ports[InputPort.One].SIValue;
+                //Debug.WriteLine(dst + "");
+            //    distance.Add(dst);
+                
+            }
+            await MoveScannarToStartposition();
+        //    int a = 0;
+        //    foreach (var item in distance)
+        //    {
+        //        a++;
+        //        Debug.WriteLine(a+": "+item + ", ");
+        //    }
         }
 
         public void Stop()
@@ -144,5 +177,9 @@ namespace MeasureController.ViewModels
         }
         #endregion
 
+
+       
     }
+
+
 }

@@ -35,8 +35,8 @@ namespace MeasureController
             DataContext = mainPageViewModel;
         }
 
-        private  void Scan(object sender, RoutedEventArgs e)
-        {            
+        private void Scan(object sender, RoutedEventArgs e)
+        {
             mainPageViewModel.StartScan();
         }
 
@@ -55,7 +55,7 @@ namespace MeasureController
             await mainPageViewModel.ConnectToRobot();
         }
 
-        private void GOMB(object sender, RoutedEventArgs e)
+        private void RobotRight(object sender, RoutedEventArgs e)
         {
             mainPageViewModel.TurnRight();
         }
@@ -63,6 +63,16 @@ namespace MeasureController
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             mainPageViewModel.TurnLeft();
+        }
+
+        private void MoveScannarToStartposition(object sender, RoutedEventArgs e)
+        {
+            mainPageViewModel.MoveScannarToStartposition();
+        }
+
+        private void Scan2_Click(object sender, RoutedEventArgs e)
+        {
+            mainPageViewModel.Scan2();
         }
 
     }

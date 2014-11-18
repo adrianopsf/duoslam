@@ -7,9 +7,11 @@
         <Button Content="Initialize" Width="100" HorizontalAlignment="Left" VerticalAlignment="Top" Height="20" Click="Scan"/>
         <Button Content="Left" Width="100" HorizontalAlignment="Left" VerticalAlignment="Top" Height="20" Click="Left_Click"/>
         <Button Content="Right" Width="100" HorizontalAlignment="Left" VerticalAlignment="Top" Height="20" Click="Right_Click"/>
-        <Button Content="Jobb" Width="100" HorizontalAlignment="Left" VerticalAlignment="Top" Height="20" Click="GOMB"/>
+        <Button Content="Jobb" Width="100" HorizontalAlignment="Left" VerticalAlignment="Top" Height="20" Click="RobotRight"/>
         <Button Content="Bal" Click="Button_Click" Width="100" HorizontalAlignment="Left" VerticalAlignment="Top" Height="20" />
         <Button Content="{Binding ConnectionText}" Width="100" HorizontalAlignment="Left" VerticalAlignment="Top" Height="20" Click="Connect_Click"/>
         <TextBlock TextWrapping="Wrap" Text=""/>
+        <Button Content="scan allappozicio" Click="MoveScannarToStartposition" Width="100" HorizontalAlignment="Left" VerticalAlignment="Top" Height="20"/>
+        <Button Content="scan" Name="Scan2" Click="Scan2_Click" Width="100" HorizontalAlignment="Left" VerticalAlignment="Top" Height="20"></Button>
     </StackPanel>
 </Window>
