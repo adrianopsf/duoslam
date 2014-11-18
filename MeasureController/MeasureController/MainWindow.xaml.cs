@@ -57,7 +57,12 @@ namespace MeasureController
 
         private void GOMB(object sender, RoutedEventArgs e)
         {
-            mainPageViewModel.GOMF();
+            mainPageViewModel.TurnRight();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            mainPageViewModel.TurnLeft();
         }
 
     }

@@ -51,7 +51,7 @@ namespace MeasureController.ViewModels
             for (int i = 0; i < 30; i++)
             {
                 await MyBrick.DirectCommand.StepMotorAtPowerAsync(OutputPort.A, power, 8, true);
-                await Task.Delay(1000);
+                await Task.Delay(300);
                 MyBrick.BrickChanged += MyBrick_BrickChanged;
                 Debug.WriteLine(i + "");
             }
@@ -63,8 +63,7 @@ namespace MeasureController.ViewModels
             MeasureList.Add(measure);
             var ga = e.Ports[InputPort.Four].RawValue;
             Debug.WriteLine("GOMB: " + ga);
-             MyBrick.BrickChanged -= MyBrick_BrickChanged;
-
+            MyBrick.BrickChanged -= MyBrick_BrickChanged;
         }
 
         public void ControllDirection(int power)
@@ -104,13 +103,37 @@ namespace MeasureController.ViewModels
         #endregion
 
 
-
-        public void GOMF()
+        /// <summary>
+        /// Unit = 15 MotorPower=70 AND Millisecundum=950
+        /// </summary>
+        public async void GoForwardOneUnit()
         {
-            MyBrick.Ports[InputPort.Four].SetMode(TouchMode.Touch);
-            Debug.WriteLine(MyBrick.Ports[InputPort.Four].RawValue);
+            MyBrick.BatchCommand.TurnMotorAtPowerForTime(OutputPort.B, 70, 950, true);
+            MyBrick.BatchCommand.TurnMotorAtPowerForTime(OutputPort.C, 70, 950, true);
+            await MyBrick.BatchCommand.SendCommandAsync();
             MyBrick.BrickChanged += MyBrick_BrickChanged;
 
+        }
+
+        public async void TurnRight()
+        {
+            MyBrick.BatchCommand.StepMotorAtPower(OutputPort.B, 40,  239, true);
+            MyBrick.BatchCommand.StepMotorAtPower(OutputPort.C, -40, 239, true);
+            await MyBrick.BatchCommand.SendCommandAsync();
+        }
+
+
+        public async void TurnLeft()
+        {
+            MyBrick.BatchCommand.StepMotorAtPower(OutputPort.B, -40, 239, true);
+            MyBrick.BatchCommand.StepMotorAtPower(OutputPort.C, 40, 239, true);
+            await MyBrick.BatchCommand.SendCommandAsync();
+        }
+
+        public void Stop()
+        {
+            MyBrick.DirectCommand.TurnMotorAtPowerAsync(OutputPort.B, 0);
+            MyBrick.DirectCommand.TurnMotorAtPowerAsync(OutputPort.C, 0);
         }
         #region NotifyPropertyCangedEventHandler
         public event PropertyChangedEventHandler PropertyChanged;
@@ -120,5 +143,6 @@ namespace MeasureController.ViewModels
                 this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
         }
         #endregion
+
     }
 }
