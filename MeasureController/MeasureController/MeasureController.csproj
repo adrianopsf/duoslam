@@ -62,7 +62,7 @@
     </ApplicationDefinition>
     <Compile Include="Helper\FileHandlerHelper.cs" />
     <Compile Include="Models\Measure.cs" />
-    <Compile Include="RobotModel.cs" />
+    <Compile Include="Models\RobotModel.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
