@@ -72,3 +72,6 @@ C:\LegoRobot\MeasureController\MeasureController\obj\Debug\MeasureController_Mar
 C:\LegoRobot\MeasureController\MeasureController\obj\Debug\MeasureController.g.resources
 C:\LegoRobot\MeasureController\MeasureController\obj\Debug\MeasureController.Properties.Resources.resources
 C:\LegoRobot\MeasureController\MeasureController\obj\Debug\MeasureController.csproj.GenerateResource.Cache
+C:\Users\József\Desktop\LeoEv3\MeasureController\MeasureController\bin\Debug\MeasureController.exe.config
+C:\Users\József\Desktop\LeoEv3\MeasureController\MeasureController\obj\Debug\MeasureController.exe
+C:\Users\József\Desktop\LeoEv3\MeasureController\MeasureController\obj\Debug\MeasureController.pdb
