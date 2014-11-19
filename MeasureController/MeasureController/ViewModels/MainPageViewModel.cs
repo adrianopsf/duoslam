@@ -4,18 +4,19 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+
 namespace MeasureController.ViewModels
 {
     public class MainPageViewModel : INotifyPropertyChanged
     {
         #region PublicMembers
+
         public List<Models.Measure> MeasureList { get; set; }
+
         public List<string> SavedFilesList { get; set; }
+
         public String ConnectionText
         {
             get
@@ -31,13 +32,19 @@ namespace MeasureController.ViewModels
                 }
             }
         }
-        #endregion
+
+        #endregion PublicMembers
 
         #region PrivateMembers
+
         private string connectionText;
-        public bool IsConnect {get;set;}
+
+        public bool IsConnect { get; set; }
+
         private Brick MyBrick;
-        #endregion
+
+        #endregion PrivateMembers
+
         public MainPageViewModel()
         {
             MeasureList = new List<Models.Measure>();
@@ -48,6 +55,7 @@ namespace MeasureController.ViewModels
         }
 
         #region HelperMethods
+
         private async Task ScanFromRight(int power)
         {
             for (int i = 0; i < 30; i++)
@@ -70,7 +78,6 @@ namespace MeasureController.ViewModels
         {
             MyBrick.DirectCommand.StepMotorAtSpeedAsync(OutputPort.A, power, 5, true);
         }
-
 
         /// <summary>
         /// Unit = 15 MotorPower=70 AND Millisecundum=950
@@ -98,9 +105,10 @@ namespace MeasureController.ViewModels
             MyBrick.DirectCommand.TurnMotorAtPowerAsync(OutputPort.C, 0);
         }
 
-        #endregion
+        #endregion HelperMethods
 
         #region ClickEvents
+
         public async void TurnRight(object sender, RoutedEventArgs e)
         {
             MyBrick.BatchCommand.StepMotorAtPower(OutputPort.B, 40, 239, true);
@@ -117,13 +125,11 @@ namespace MeasureController.ViewModels
 
         public async void MoveScannarToStartposition(object sender, RoutedEventArgs e)
         {
-
             while (MyBrick.Ports[InputPort.Four].RawValue <= Helper.Config.RawValueLimit)
             {
                 await MyBrick.DirectCommand.TurnMotorAtPowerForTimeAsync(OutputPort.A, 30, 50, true);
                 await Task.Delay(50);
             }
-
         }
 
         public async void Scan2(object sender, RoutedEventArgs e)
@@ -155,9 +161,10 @@ namespace MeasureController.ViewModels
             await ScanFromRight(-90);
         }
 
-        #endregion
+        #endregion ClickEvents
 
         #region ConnectDisconnect
+
         public async void ConnectToRobot(object sender, RoutedEventArgs e)
         {
             if (!IsConnect)
@@ -185,19 +192,20 @@ namespace MeasureController.ViewModels
                 IsConnect = !IsConnect;
                 NotifyPropertyCanged("IsConnect");
             }
-
         }
-        #endregion
+
+        #endregion ConnectDisconnect
 
         #region NotifyPropertyCangedEventHandler
+
         public event PropertyChangedEventHandler PropertyChanged;
+
         public void NotifyPropertyCanged(string propName)
         {
             if (this.PropertyChanged != null)
                 this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
         }
-        #endregion
+
+        #endregion NotifyPropertyCangedEventHandler
     }
-
-
 }

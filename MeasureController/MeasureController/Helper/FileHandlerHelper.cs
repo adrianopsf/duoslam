@@ -1,11 +1,8 @@
 ﻿using MeasureController.Models;
 using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace MeasureController.Helper
@@ -22,13 +19,15 @@ namespace MeasureController.Helper
             else
                 MessageBox.Show("The file name is incorrect!");
         }
+
         public static List<string> GetAllFileFromFolder()
         {
             List<string> list = new List<string>();
-            foreach (string s in Directory.GetFiles(Helper.Config.FilePath, "*"+Helper.Config.FileExtension).Select(Path.GetFileName))
+            foreach (string s in Directory.GetFiles(Helper.Config.FilePath, "*" + Helper.Config.FileExtension).Select(Path.GetFileName))
                 list.Add(s);
             return list;
         }
+
         public static List<Measure> GetTXTFileToList(string fileName)
         {
             List<Measure> list = new List<Measure>();
@@ -45,4 +44,3 @@ namespace MeasureController.Helper
         }
     }
 }
-
