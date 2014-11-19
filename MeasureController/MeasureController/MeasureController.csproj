@@ -60,6 +60,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Helper\BoolToVisibilityConverter.cs" />
+    <Compile Include="Helper\Config.cs" />
     <Compile Include="Helper\FileHandlerHelper.cs" />
     <Compile Include="Models\Measure.cs" />
     <Compile Include="Models\RobotModel.cs" />

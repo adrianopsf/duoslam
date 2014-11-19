@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using Lego.Ev3.Core;
 using Lego.Ev3.Desktop;
 using MeasureController.ViewModels;
+using MeasureController.Models;
 
 namespace MeasureController
 {
@@ -33,12 +34,14 @@ namespace MeasureController
         {
             mainPageViewModel = new MainPageViewModel();
             DataContext = mainPageViewModel;
+            InitButton.Click += mainPageViewModel.StartScan;
+            ConnectButton.Click += mainPageViewModel.ConnectToRobot;
+            RobotRightButton.Click += mainPageViewModel.TurnRight;
+            ScanButton.Click += mainPageViewModel.Scan2;
+            ScanInitButton.Click += mainPageViewModel.MoveScannarToStartposition;
+            RobotLeftButton.Click += mainPageViewModel.TurnLeft;
         }
 
-        private void Scan(object sender, RoutedEventArgs e)
-        {
-            mainPageViewModel.StartScan();
-        }
 
         private void Left_Click(object sender, RoutedEventArgs e)
         {
@@ -50,30 +53,11 @@ namespace MeasureController
             mainPageViewModel.ControllDirection(50);
         }
 
-        private async void Connect_Click(object sender, RoutedEventArgs e)
+        private void DrawSavedData(object sender, MouseButtonEventArgs e)
         {
-            await mainPageViewModel.ConnectToRobot();
+            string fileName = SavedMapData.SelectedItem.ToString();
+            List<Measure> MapList = Helper.FileHandlerHelper.GetTXTFileToList(fileName);
+            // TODO: DRAW!
         }
-
-        private void RobotRight(object sender, RoutedEventArgs e)
-        {
-            mainPageViewModel.TurnRight();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            mainPageViewModel.TurnLeft();
-        }
-
-        private void MoveScannarToStartposition(object sender, RoutedEventArgs e)
-        {
-            mainPageViewModel.MoveScannarToStartposition();
-        }
-
-        private void Scan2_Click(object sender, RoutedEventArgs e)
-        {
-            mainPageViewModel.Scan2();
-        }
-
     }
 }

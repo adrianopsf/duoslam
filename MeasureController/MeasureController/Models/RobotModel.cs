@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MeasureController
+namespace MeasureController.Models
 {
     public class RobotModel
     {

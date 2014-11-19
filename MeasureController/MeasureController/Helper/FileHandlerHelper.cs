@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using MeasureController.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -15,7 +16,7 @@ namespace MeasureController.Helper
         {
             string jsonString;
             jsonString = JsonConvert.SerializeObject(list);
-            string path = @"c:\Users\József\Documents\" + fileName + ".txt";
+            string path = Helper.Config.FilePath + fileName + Helper.Config.FileExtension;
             if (!File.Exists(path))
                 File.WriteAllText(path, jsonString);
             else
@@ -24,17 +25,17 @@ namespace MeasureController.Helper
         public static List<string> GetAllFileFromFolder()
         {
             List<string> list = new List<string>();
-            foreach (string s in Directory.GetFiles(@"c:\Users\József\Documents\", "*.txt").Select(Path.GetFileName))
+            foreach (string s in Directory.GetFiles(Helper.Config.FilePath, "*"+Helper.Config.FileExtension).Select(Path.GetFileName))
                 list.Add(s);
             return list;
         }
-        public static List<RobotModel> GetTXTFileToList(string fileName)
+        public static List<Measure> GetTXTFileToList(string fileName)
         {
-            List<RobotModel> list = new List<RobotModel>();
+            List<Measure> list = new List<Measure>();
             try
             {
-                string content = File.ReadAllText(@"c:\Users\József\Documents\" + fileName + ".txt");
-                list = JsonConvert.DeserializeObject<List<RobotModel>>(content);
+                string content = File.ReadAllText(Helper.Config.FilePath + fileName);
+                list = JsonConvert.DeserializeObject<List<Measure>>(content);
             }
             catch
             {
