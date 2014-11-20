@@ -2,8 +2,14 @@
 {
     public class Measure
     {
-        public double SensorDataSI { get; set; }
+        public double RobotTheta { get; set; }
 
-        public double MotorDataSI { get; set; }
+        public double SensorTheta { get; set; }
+
+        public double RobotX { get; set; }
+
+        public double RobotY { get; set; }
+
+        public double SensorData { get; set; }
     }
 }

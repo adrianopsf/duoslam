@@ -63,8 +63,8 @@
     <Compile Include="Helper\BoolToVisibilityConverter.cs" />
     <Compile Include="Helper\Config.cs" />
     <Compile Include="Helper\FileHandlerHelper.cs" />
+    <Compile Include="Models\FilesModel.cs" />
     <Compile Include="Models\Measure.cs" />
-    <Compile Include="Models\RobotModel.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

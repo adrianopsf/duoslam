@@ -9,31 +9,47 @@ namespace MeasureController.Helper
 {
     public static class FileHandlerHelper
     {
-        public static void SaveListToTXTFile<T>(List<T> list, string fileName)
+        public static void SaveListToTXTFile<T>(List<T> list, string fileName, string filePath)
         {
             string jsonString;
             jsonString = JsonConvert.SerializeObject(list);
-            string path = Helper.Config.FilePath + fileName + Helper.Config.FileExtension;
-            if (!File.Exists(path))
-                File.WriteAllText(path, jsonString);
-            else
+            string path = filePath + @"\" + fileName + Helper.Config.FileExtension;
+            string path2 = path.Replace(@"\\", @"\");
+            try
+            {
+                File.WriteAllText(path2, jsonString);
+            }
+            catch
+            {
                 MessageBox.Show("The file name is incorrect!");
+            }
         }
 
-        public static List<string> GetAllFileFromFolder()
+        public static List<Models.FilesModel> GetAllFileFromFolder(string filePath)
         {
-            List<string> list = new List<string>();
-            foreach (string s in Directory.GetFiles(Helper.Config.FilePath, "*" + Helper.Config.FileExtension).Select(Path.GetFileName))
-                list.Add(s);
+            List<Models.FilesModel> list = new List<Models.FilesModel>();
+            try
+            {
+                foreach (string s in Directory.GetFiles(filePath, "*" + Helper.Config.FileExtension).Select(Path.GetFileName))
+                {
+                    list.Add(new Models.FilesModel { FileName = s, FilePath = filePath });
+                }
+            }
+            catch
+            {
+                MessageBox.Show("The directory doesn't exist!");
+            }
+
             return list;
         }
 
-        public static List<Measure> GetTXTFileToList(string fileName)
+        public static List<Measure> GetTXTFileToList(string fileName, string filePath)
         {
             List<Measure> list = new List<Measure>();
             try
             {
-                string content = File.ReadAllText(Helper.Config.FilePath + fileName);
+                string path = filePath.Replace(@"\\", @"\");
+                string content = File.ReadAllText(path + @"\" + fileName);
                 list = JsonConvert.DeserializeObject<List<Measure>>(content);
             }
             catch

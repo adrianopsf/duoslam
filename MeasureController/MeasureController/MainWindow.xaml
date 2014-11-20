@@ -13,26 +13,37 @@
             <ColumnDefinition Width="150" />
         </Grid.ColumnDefinitions>
 
-        <StackPanel Grid.Column="0">
-            <Button x:Name="ConnectButton"                                                                          Content="{Binding ConnectionText}" Width="150" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" />
-            <Button x:Name="LeftButton"       Visibility="{Binding IsConnect,Converter={StaticResource converter}}" Content="Left"                     Width="150" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" Click="Left_Click" />
-            <Button x:Name="RightButton"      Visibility="{Binding IsConnect,Converter={StaticResource converter}}" Content="Right"                    Width="150" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" Click="Right_Click" />
-            <Button x:Name="RobotRightButton" Visibility="{Binding IsConnect,Converter={StaticResource converter}}" Content="Jobb"                     Width="150" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" />
-            <Button x:Name="RobotLeftButton"  Visibility="{Binding IsConnect,Converter={StaticResource converter}}" Content="Bal"                      Width="150" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" />
-            <Button x:Name="InitButton"       Visibility="{Binding IsConnect,Converter={StaticResource converter}}" Content="Initialize"               Width="150" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" />
-            <Button x:Name="ScanInitButton"   Visibility="{Binding IsConnect,Converter={StaticResource converter}}" Content="scan allappozicio"        Width="150" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" />
-            <Button x:Name="ScanButton"       Visibility="{Binding IsConnect,Converter={StaticResource converter}}" Content="scan"                     Width="150" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" />
+        <StackPanel Grid.Column="0" VerticalAlignment="Center">
+            <Button x:Name="ConnectButton" Content="{Binding ConnectionText}" Width="150" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" />
+            <StackPanel Orientation="Horizontal">
+                <Button x:Name="LeftButton" Visibility="{Binding IsConnect,Converter={StaticResource converter}}" Content="Left" Width="75" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" Click="Left_Click" />
+                <Button x:Name="RightButton" Visibility="{Binding IsConnect,Converter={StaticResource converter}}" Content="Right" Width="75" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" Click="Right_Click" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Button x:Name="RobotRightButton" Visibility="{Binding IsConnect,Converter={StaticResource converter}}" Content="Jobb" Width="75" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" />
+                <Button x:Name="RobotLeftButton" Visibility="{Binding IsConnect,Converter={StaticResource converter}}" Content="Bal" Width="75" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" />
+            </StackPanel>
+            <Button x:Name="InitButton" Visibility="{Binding IsConnect,Converter={StaticResource converter}}" Content="Initialize" Width="150" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" />
+            <Button x:Name="ScanInitButton" Visibility="{Binding IsConnect,Converter={StaticResource converter}}" Content="scan allappozicio" Width="150" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" />
+            <Button x:Name="ScanButton" Visibility="{Binding IsConnect,Converter={StaticResource converter}}" Content="scan" Width="150" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" />
+            <TextBox TextWrapping="Wrap" Width="150" VerticalAlignment="Center" x:Name="SaveFilePathText" Text="C:\" />
+            <TextBox TextWrapping="Wrap" Width="150" VerticalAlignment="Center" x:Name="SaveFileNameText" />
+            <Button Content="Save" Height="30" Width="150" Click="SaveButtonClick" />
         </StackPanel>
         <Canvas Grid.Column="1" x:Name="MapCanvas" Width="700" Height="700">
         </Canvas>
-        <ListBox Grid.Column="2" x:Name="SavedMapData" ItemsSource="{Binding SavedFilesList}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" MouseDoubleClick="DrawSavedData">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal" Background="AliceBlue">
-                        <TextBlock Width="150" Text="{Binding}" FontSize="20" />
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+        <StackPanel Grid.Column="2" Grid.Row="0">
+            <TextBox TextWrapping="Wrap" Width="150" VerticalAlignment="Center" x:Name="FilePathText" />
+            <Button Click="SearchButtonClick" Content="Search" Height="30" Width="150" />
+            <ListBox x:Name="SavedMapData" ItemsSource="{Binding SavedFilesList}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" MouseDoubleClick="DrawSavedData" BorderThickness="0">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal" Background="AliceBlue">
+                            <TextBlock Width="150" Text="{Binding FileName}" FontSize="20" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </StackPanel>
     </Grid>
 </Window>

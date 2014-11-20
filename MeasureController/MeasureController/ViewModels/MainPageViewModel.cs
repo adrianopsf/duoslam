@@ -1,5 +1,6 @@
 ﻿using Lego.Ev3.Core;
 using Lego.Ev3.Desktop;
+using MeasureController.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,7 +16,21 @@ namespace MeasureController.ViewModels
 
         public List<Models.Measure> MeasureList { get; set; }
 
-        public List<string> SavedFilesList { get; set; }
+        public List<FilesModel> SavedFilesList
+        {
+            get
+            {
+                return savedFilesList;
+            }
+            set
+            {
+                if (savedFilesList != value)
+                {
+                    savedFilesList = value;
+                    NotifyPropertyCanged("SavedFilesList");
+                }
+            }
+        }
 
         public String ConnectionText
         {
@@ -37,6 +52,8 @@ namespace MeasureController.ViewModels
 
         #region PrivateMembers
 
+        private List<FilesModel> savedFilesList;
+
         private string connectionText;
 
         public bool IsConnect { get; set; }
@@ -48,8 +65,7 @@ namespace MeasureController.ViewModels
         public MainPageViewModel()
         {
             MeasureList = new List<Models.Measure>();
-            SavedFilesList = new List<string>();
-            SavedFilesList = Helper.FileHandlerHelper.GetAllFileFromFolder();
+            SavedFilesList = new List<Models.FilesModel>();
             IsConnect = false;
             ConnectionText = "Connect";
         }
@@ -69,7 +85,7 @@ namespace MeasureController.ViewModels
 
         private void MyBrick_BrickChanged(object sender, BrickChangedEventArgs e)
         {
-            Models.Measure measure = new Models.Measure() { MotorDataSI = e.Ports[InputPort.A].SIValue, SensorDataSI = e.Ports[InputPort.Four].SIValue };
+            Models.Measure measure = new Models.Measure() { SensorTheta = e.Ports[InputPort.Four].SIValue };
             MeasureList.Add(measure);
             MyBrick.BrickChanged -= MyBrick_BrickChanged;
         }
