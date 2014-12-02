@@ -1,0 +1,12 @@
+c:\users\hallgato\documents\visual studio 2013\Projects\ReadFromFile\ReadFromFile\bin\Debug\ReadFromFile.exe.config
+c:\users\hallgato\documents\visual studio 2013\Projects\ReadFromFile\ReadFromFile\obj\Debug\ReadFromFile.exe
+c:\users\hallgato\documents\visual studio 2013\Projects\ReadFromFile\ReadFromFile\obj\Debug\ReadFromFile.pdb
+C:\Users\Hallgato\Documents\Visual Studio 2013\Projects\ReadFromCanvas\ReadFromFile\bin\Debug\ReadFromFile.exe.config
+C:\Users\Hallgato\Documents\Visual Studio 2013\Projects\ReadFromCanvas\ReadFromFile\obj\Debug\ReadFromFile.exe
+C:\Users\Hallgato\Documents\Visual Studio 2013\Projects\ReadFromCanvas\ReadFromFile\obj\Debug\ReadFromFile.pdb
+C:\DuoSlam\WriteOnCanvas\ReadFromFile\bin\Debug\ReadFromFile.exe.config
+C:\DuoSlam\WriteOnCanvas\ReadFromFile\obj\Debug\ReadFromFile.exe
+C:\DuoSlam\WriteOnCanvas\ReadFromFile\obj\Debug\ReadFromFile.pdb
+C:\DuoSlam\Canvas\ReadFromFile\bin\Debug\ReadFromFile.exe.config
+C:\DuoSlam\Canvas\ReadFromFile\obj\Debug\ReadFromFile.exe
+C:\DuoSlam\Canvas\ReadFromFile\obj\Debug\ReadFromFile.pdb

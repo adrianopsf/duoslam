@@ -1,0 +1,15 @@
+c:\users\hallgato\documents\visual studio 2013\Projects\ReadFromFile\ReadFromFile\bin\Debug\ReadFromFile.exe.config
+c:\users\hallgato\documents\visual studio 2013\Projects\ReadFromFile\ReadFromFile\bin\Debug\ReadFromFile.exe
+c:\users\hallgato\documents\visual studio 2013\Projects\ReadFromFile\ReadFromFile\bin\Debug\ReadFromFile.pdb
+c:\users\hallgato\documents\visual studio 2013\Projects\ReadFromFile\ReadFromFile\obj\Debug\ReadFromFile.csprojResolveAssemblyReference.cache
+c:\users\hallgato\documents\visual studio 2013\Projects\ReadFromFile\ReadFromFile\obj\Debug\MainWindow.baml
+c:\users\hallgato\documents\visual studio 2013\Projects\ReadFromFile\ReadFromFile\obj\Debug\MainWindow.g.cs
+c:\users\hallgato\documents\visual studio 2013\Projects\ReadFromFile\ReadFromFile\obj\Debug\App.g.cs
+c:\users\hallgato\documents\visual studio 2013\Projects\ReadFromFile\ReadFromFile\obj\Debug\ReadFromFile_MarkupCompile.cache
+c:\users\hallgato\documents\visual studio 2013\Projects\ReadFromFile\ReadFromFile\obj\Debug\ReadFromFile.g.resources
+c:\users\hallgato\documents\visual studio 2013\Projects\ReadFromFile\ReadFromFile\obj\Debug\ReadFromFile.Properties.Resources.resources
+c:\users\hallgato\documents\visual studio 2013\Projects\ReadFromFile\ReadFromFile\obj\Debug\ReadFromFile.csproj.GenerateResource.Cache
+c:\users\hallgato\documents\visual studio 2013\Projects\ReadFromFile\ReadFromFile\obj\Debug\ReadFromFile.exe
+c:\users\hallgato\documents\visual studio 2013\Projects\ReadFromFile\ReadFromFile\obj\Debug\ReadFromFile.pdb
+c:\users\hallgato\documents\visual studio 2013\Projects\ReadFromFile\ReadFromFile\bin\Debug\Newtonsoft.Json.dll
+c:\users\hallgato\documents\visual studio 2013\Projects\ReadFromFile\ReadFromFile\bin\Debug\Newtonsoft.Json.xml
