@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<SimMechanicsImportXML version="1.0" xmlns="urn:mathworks:simmechanics:import" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<Created by="" on="11/24/14||15:08:49" using="SimMechanics Link Version 4.2" from="SolidWorks 21.0.0"/>
+<ModelUnits mass="kilogram" length="millimeter"/>
+<DataUnits mass="kilogram" length="meter"/>
+<RootAssembly name="Rob_Diff_Erno_1" uid="Rob_Diff_Erno_1" version="110">
+<AssemblyFile name="Rob_Diff_Erno_1.SLDASM" type="SolidWorks Assembly"/>
+<InstanceTree>
+<Instance name="Corp1-1" uid="Corp1-1" grounded="true" entityUid="Corp1*:*Default">
+<Transform>
+<Rotation>1 0 0 0 1 0 0 0 1</Rotation>
+<Translation>0 0 0</Translation>
+</Transform>
+</Instance>
+<Instance name="RoataMare1-2" uid="RoataMare1-2" entityUid="RoataMare1*:*Default">
+<Transform>
+<Rotation>0 0 -1 0.683357 0.730084 0 0.730084 -0.683357 0</Rotation>
+<Translation>0.22 0.254678 0</Translation>
+</Transform>
+</Instance>
+<Instance name="RoataMare1-1" uid="RoataMare1-1" entityUid="RoataMare1*:*Default">
+<Transform>
+<Rotation>0 0 1 -0.325894 0.945406 0 -0.945406 -0.325894 0</Rotation>
+<Translation>-0.22 0.253869 0</Translation>
+</Transform>
+</Instance>
+</InstanceTree>
+<Constraints>
+<Concentric name="Concentric1">
+<ConstraintGeometry geomType="cylinder">
+<InstancePath>
+<Uid>Corp1-1</Uid>
+</InstancePath>
+<Position>-0.27 0.253869 0</Position>
+<Axis>1 0 0</Axis>
+</ConstraintGeometry>
+<ConstraintGeometry geomType="cylinder">
+<InstancePath>
+<Uid>RoataMare1-1</Uid>
+</InstancePath>
+<Position>0 0 0.05</Position>
+<Axis>0 0 -1</Axis>
+</ConstraintGeometry>
+</Concentric>
+<Coincident name="Coincident1">
+<ConstraintGeometry geomType="plane">
+<InstancePath>
+<Uid>Corp1-1</Uid>
+</InstancePath>
+<Position>-0.17 0.253869 0</Position>
+<Axis>-1 0 0</Axis>
+</ConstraintGeometry>
+<ConstraintGeometry geomType="plane">
+<InstancePath>
+<Uid>RoataMare1-1</Uid>
+</InstancePath>
+<Position>0 0 0.05</Position>
+<Axis>0 0 1</Axis>
+</ConstraintGeometry>
+</Coincident>
+<Concentric name="Concentric2">
+<ConstraintGeometry geomType="cylinder">
+<InstancePath>
+<Uid>Corp1-1</Uid>
+</InstancePath>
+<Position>0.27 0.254678 0</Position>
+<Axis>-1 -2.77556e-016 0</Axis>
+</ConstraintGeometry>
+<ConstraintGeometry geomType="cylinder">
+<InstancePath>
+<Uid>RoataMare1-2</Uid>
+</InstancePath>
+<Position>0 0 0.05</Position>
+<Axis>0 0 -1</Axis>
+</ConstraintGeometry>
+</Concentric>
+<Coincident name="Coincident2">
+<ConstraintGeometry geomType="plane">
+<InstancePath>
+<Uid>Corp1-1</Uid>
+</InstancePath>
+<Position>0.17 0.254678 0</Position>
+<Axis>1 2.77556e-016 0</Axis>
+</ConstraintGeometry>
+<ConstraintGeometry geomType="plane">
+<InstancePath>
+<Uid>RoataMare1-2</Uid>
+</InstancePath>
+<Position>0 0 0.05</Position>
+<Axis>0 0 1</Axis>
+</ConstraintGeometry>
+</Coincident>
+</Constraints>
+</RootAssembly>
+<Assemblies>
+</Assemblies>
+<Parts>
+<Part name="Corp1" uid="Corp1*:*Default" version="133">
+<ModelUnits mass="kilogram" length="millimeter"/>
+<PartFile name="Corp1.SLDPRT" type="SolidWorks Part"/>
+<MassProperties>
+<Mass>50.6599</Mass>
+<CenterOfMass>-3.54762e-011 0.213212 0.000124454</CenterOfMass>
+<Inertia>1.29318 0.603177 1.81376 -0.00116217 -5.94621e-008 0.000149252</Inertia>
+</MassProperties>
+<GeometryFile name="Corp1_Default_sldprt.STL" type="STL"/>
+<VisualProperties>
+<Ambient r="0.894118" g="0.913725" b="0.929412" a="1"/>
+<Diffuse r="0.894118" g="0.913725" b="0.929412" a="1"/>
+<Specular r="0.447059" g="0.456863" b="0.464706" a="1"/>
+<Emissive r="0" g="0" b="0" a="1"/>
+<Shininess>0.3125</Shininess>
+</VisualProperties>
+</Part>
+<Part name="RoataMare1" uid="RoataMare1*:*Default" version="135">
+<ModelUnits mass="kilogram" length="millimeter"/>
+<PartFile name="RoataMare1.SLDPRT" type="SolidWorks Part"/>
+<MassProperties>
+<Mass>3.13776</Mass>
+<CenterOfMass>5.92504e-006 3.28714e-006 2.06589e-011</CenterOfMass>
+<Inertia>0.016344 0.0163435 0.0280968 1.65655e-011 4.71483e-011 -3.64267e-007</Inertia>
+</MassProperties>
+<GeometryFile name="RoataMare1_Default_sldprt.STL" type="STL"/>
+<VisualProperties>
+<Ambient r="0.792157" g="0.819608" b="0.933333" a="1"/>
+<Diffuse r="0.792157" g="0.819608" b="0.933333" a="1"/>
+<Specular r="0.396078" g="0.409804" b="0.466667" a="1"/>
+<Emissive r="0" g="0" b="0" a="1"/>
+<Shininess>0.4</Shininess>
+</VisualProperties>
+</Part>
+</Parts>
+</SimMechanicsImportXML>
