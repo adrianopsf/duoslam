@@ -31,3 +31,6 @@ D:\LEGOROBOT\trunk\Ev3.DuoSlam\obj\Debug\Ev3.Elso_MarkupCompile.cache
 D:\LEGOROBOT\trunk\Ev3.DuoSlam\obj\Debug\Ev3.Elso.g.resources
 D:\LEGOROBOT\trunk\Ev3.DuoSlam\obj\Debug\Ev3.DuoSlam.Properties.Resources.resources
 D:\LEGOROBOT\trunk\Ev3.DuoSlam\obj\Debug\Ev3.DuoSlam.csproj.GenerateResource.Cache
+C:\LegoRobot_2\trunk\Ev3.DuoSlam\bin\Debug\Ev3.Elso.exe.config
+C:\LegoRobot_2\trunk\Ev3.DuoSlam\obj\Debug\Ev3.Elso.exe
+C:\LegoRobot_2\trunk\Ev3.DuoSlam\obj\Debug\Ev3.Elso.pdb
