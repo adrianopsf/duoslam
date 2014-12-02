@@ -20,8 +20,8 @@
                 <Button x:Name="RightButton" Visibility="{Binding IsConnect,Converter={StaticResource converter}}" Content="Right" Width="75" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" Click="Right_Click" />
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <Button x:Name="RobotRightButton" Visibility="{Binding IsConnect,Converter={StaticResource converter}}" Content="Jobb" Width="75" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" />
-                <Button x:Name="RobotLeftButton" Visibility="{Binding IsConnect,Converter={StaticResource converter}}" Content="Bal" Width="75" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" />
+                <Button x:Name="RobotLeftButton" Visibility="{Binding IsConnect, Converter={StaticResource converter}}" Content="RobotLeft" Width="75" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" />
+                <Button x:Name="RobotRightButton" Visibility="{Binding IsConnect, Converter={StaticResource converter}}" Content="RobotRight" Width="75" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" />
             </StackPanel>
             <Button x:Name="InitButton" Visibility="{Binding IsConnect,Converter={StaticResource converter}}" Content="Initialize" Width="150" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" />
             <Button x:Name="ScanInitButton" Visibility="{Binding IsConnect,Converter={StaticResource converter}}" Content="scan allappozicio" Width="150" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" />

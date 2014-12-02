@@ -79,7 +79,7 @@ namespace MeasureController.ViewModels
                 await MyBrick.DirectCommand.StepMotorAtPowerAsync(OutputPort.A, -power, 8, true);
                 await Task.Delay(300);
                 MyBrick.BrickChanged += MyBrick_BrickChanged;
-                Debug.WriteLine(i + "");
+                //Debug.WriteLine(i + "");
             }
         }
 
@@ -146,22 +146,117 @@ namespace MeasureController.ViewModels
                 await MyBrick.DirectCommand.TurnMotorAtPowerForTimeAsync(OutputPort.A, 30, 50, true);
                 await Task.Delay(50);
             }
+
         }
 
+        public async Task scanPart(int power)
+        {
+            await MyBrick.DirectCommand.StepMotorAtPowerAsync(OutputPort.A, power, 60, true);
+            Debug.WriteLine(power);
+            await Task.Delay(1000);
+           
+           
+        }
+        
+        //cél az hogy középen tőle egy bizonyos szögben jobbra és balra mérjen egyet és 
+        // ebből tudjunk vmit kiolvasni
         public async void Scan2(object sender, RoutedEventArgs e)
         {
+            await scanPart(50);
+            await scanPart(-50);
+            await scanPart(-50);
+            await scanPart(50);
+            await scanPart(50);
+            await scanPart(-50);
+            await scanPart(-50);
+            await scanPart(50);
+            await scanPart(50);
+            await scanPart(-50);
+            await scanPart(-50);
+            await scanPart(50);
+            await scanPart(50);
+            await scanPart(-50);
+            await scanPart(-50);
+            await scanPart(50);
+            await scanPart(50);
+            await scanPart(-50);
+            ////////////////////////////////////////////////////////////DateTime now = DateTime.Now;
+            ////////////////////////////////////////////////////////////await scanPart(50);
+            ////////////////////////////////////////////////////////////await Task.Delay(400);
+
+            ////////////////////////////////////////////////////////////float dst = MyBrick.Ports[InputPort.One].SIValue;
+            ////////////////////////////////////////////////////////////now = DateTime.Now;
+            ////////////////////////////////////////////////////////////Debug.WriteLine("Distance 1 = " + dst +"\t---"+now.Second + " : " + now.Millisecond);
+            ////////////////////////////////////////////////////////////await Task.Delay(1100);
+
+            ////////////////////////////////////////////////////////////await scanPart(-50);
+            ////////////////////////////////////////////////////////////await Task.Delay(400);
+
+            ////////////////////////////////////////////////////////////dst = MyBrick.Ports[InputPort.One].SIValue;
+            ////////////////////////////////////////////////////////////now = DateTime.Now;
+            ////////////////////////////////////////////////////////////Debug.WriteLine("Distance 2 = " + dst +"\t---"+ now.Second + " : " + now.Millisecond);
+            ////////////////////////////////////////////////////////////await Task.Delay(1100);
+
+            ////////////////////////////////////////////////////////////await scanPart(-50);
+            ////////////////////////////////////////////////////////////await Task.Delay(400);
+
+            ////////////////////////////////////////////////////////////dst = MyBrick.Ports[InputPort.One].SIValue;
+            ////////////////////////////////////////////////////////////now = DateTime.Now;
+            ////////////////////////////////////////////////////////////Debug.WriteLine("Distance 3 = " + dst + "\t---" + now.Second + " : " + now.Millisecond);
+            ////////////////////////////////////////////////////////////await Task.Delay(1100);
+
+            ////////////////////////////////////////////////////////////await scanPart(50);
+           
+
+            //////////////////float dst = 0;
+            ////////////////// Task.Delay(1400);
+            ////////////////// MyBrick.DirectCommand.StepMotorAtPowerAsync(OutputPort.A, 50, 60, true);
+            ////////////////// Task.Delay(1400);
+            //////////////////MyBrick.BrickChanged += MyBrick_BrickChanged;
+            //////////////////dst = MyBrick.Ports[InputPort.One].SIValue;
+            //////////////////Debug.WriteLine("Distance 1 = "+ dst);
+            ////////////////// Task.Delay(1400);
+
+            ////////////////// MyBrick.DirectCommand.StepMotorAtPowerAsync(OutputPort.A, -50, 60, true);
+            ////////////////// Task.Delay(1400);
+            //////////////////MyBrick.BrickChanged += MyBrick_BrickChanged;
+            //////////////////dst = MyBrick.Ports[InputPort.One].SIValue;
+            //////////////////Debug.WriteLine("Distance 2 = " + dst);
+            ////////////////// Task.Delay(1400);
+
+            ////////////////// MyBrick.DirectCommand.StepMotorAtPowerAsync(OutputPort.A, -50, 60, true);
+            ////////////////// Task.Delay(1400);
+            //////////////////MyBrick.BrickChanged += MyBrick_BrickChanged;
+            //////////////////dst = MyBrick.Ports[InputPort.One].SIValue; 
+            //////////////////Debug.WriteLine("Distance 3 = " + dst);
+            //////////////////Task.Delay(1400);
+
+            //////////////////MyBrick.DirectCommand.StepMotorAtPowerAsync(OutputPort.A, 50, 60, true);
+            //////////////////Task.Delay(1400);
+
+
+
             //  List<float> distance = new List<float>();
-            await MoveScannarToStartposition();
-            for (int i = 0; i < 37; i++)
-            {
-                await MyBrick.DirectCommand.StepMotorAtPowerAsync(OutputPort.A, -35, 8, true);
-                await Task.Delay(300);
-                MyBrick.BrickChanged += MyBrick_BrickChanged;
-                //  float dst = MyBrick.Ports[InputPort.One].SIValue;
-                //Debug.WriteLine(dst + "");
-                //    distance.Add(dst);
-            }
-            await MoveScannarToStartposition();
+            //DateTime now = new DateTime();
+            //await MoveScannarToStartposition();
+            //////DateTime now = DateTime.Now;
+            //////Debug.WriteLine(now.Second + " : " + now.Millisecond);
+            //////MyBrick.DirectCommand.StepMotorAtPowerAsync(OutputPort.A, -10, 180, true);
+            //////now = DateTime.Now;
+            //////Debug.WriteLine(now.Second + " : " + now.Millisecond);
+            //for (int i = 0; i < 37; i++)
+            //{
+
+            //    MyBrick.BrickChanged += MyBrick_BrickChanged;
+            //    await Task.Delay(1000);
+
+            //      float dst = MyBrick.Ports[InputPort.One].SIValue;
+            //    float motorPos = MyBrick.Ports[InputPort.A].SIValue;
+            //      now = DateTime.Now;
+            //    Debug.WriteLine(dst + "  "+now.Second+" : "+ now.Millisecond+"---"+motorPos);
+            //    distance.Add(dst);
+            //}
+            //await MoveScannarToStartposition();
             //    int a = 0;
             //    foreach (var item in distance)
             //    {
