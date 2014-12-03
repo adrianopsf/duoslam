@@ -54,6 +54,8 @@ namespace MeasureController.ViewModels
 
         private List<FilesModel> savedFilesList;
 
+        private float startPositionOfSensorMotor;
+
         private string connectionText;
 
         public bool IsConnect { get; set; }
@@ -85,9 +87,9 @@ namespace MeasureController.ViewModels
 
         private void MyBrick_BrickChanged(object sender, BrickChangedEventArgs e)
         {
-            Models.Measure measure = new Models.Measure() { SensorTheta = e.Ports[InputPort.Four].SIValue };
+
+            Models.Measure measure = new Models.Measure() { SensorMotorPosition = e.Ports[InputPort.A].RawValue, SensorDistance = e.Ports[InputPort.One].SIValue };
             MeasureList.Add(measure);
-            MyBrick.BrickChanged -= MyBrick_BrickChanged;
         }
 
         public void ControllDirection(int power)
@@ -151,35 +153,25 @@ namespace MeasureController.ViewModels
 
         public async Task scanPart(int power)
         {
+
             await MyBrick.DirectCommand.StepMotorAtPowerAsync(OutputPort.A, power, 60, true);
-            Debug.WriteLine(power);
-            await Task.Delay(1000);
-           
-           
+            await Task.Delay(1500);
         }
-        
+
         //cél az hogy középen tőle egy bizonyos szögben jobbra és balra mérjen egyet és 
         // ebből tudjunk vmit kiolvasni
         public async void Scan2(object sender, RoutedEventArgs e)
         {
+            startPositionOfSensorMotor = MyBrick.Ports[InputPort.A].RawValue;
+            MyBrick.BrickChanged += MyBrick_BrickChanged;
+            await Task.Delay(1500);
             await scanPart(50);
             await scanPart(-50);
             await scanPart(-50);
             await scanPart(50);
-            await scanPart(50);
-            await scanPart(-50);
-            await scanPart(-50);
-            await scanPart(50);
-            await scanPart(50);
-            await scanPart(-50);
-            await scanPart(-50);
-            await scanPart(50);
-            await scanPart(50);
-            await scanPart(-50);
-            await scanPart(-50);
-            await scanPart(50);
-            await scanPart(50);
-            await scanPart(-50);
+            FilterMeasureList();
+
+            Debug.WriteLine("SEMMI");
             ////////////////////////////////////////////////////////////DateTime now = DateTime.Now;
             ////////////////////////////////////////////////////////////await scanPart(50);
             ////////////////////////////////////////////////////////////await Task.Delay(400);
@@ -206,7 +198,7 @@ namespace MeasureController.ViewModels
             ////////////////////////////////////////////////////////////await Task.Delay(1100);
 
             ////////////////////////////////////////////////////////////await scanPart(50);
-           
+
 
             //////////////////float dst = 0;
             ////////////////// Task.Delay(1400);
@@ -263,6 +255,23 @@ namespace MeasureController.ViewModels
             //        a++;
             //        Debug.WriteLine(a+": "+item + ", ");
             //    }
+        }
+
+        public void FilterMeasureList()
+        {
+            for (int i = 0; i < MeasureList.Count; i++)
+            {
+                for (int j = 0; j < MeasureList.Count; j++)
+                {
+                    if (i != j)
+                    {
+                        if (MeasureList[j].SensorMotorPosition >= MeasureList[i].SensorMotorPosition - 5 && MeasureList[j].SensorMotorPosition <= MeasureList[i].SensorMotorPosition + 5)
+                        {
+                            MeasureList.Remove(MeasureList[j]);
+                        }
+                    }
+                }
+            }
         }
 
         public async void StartScan(object sender, RoutedEventArgs e)
