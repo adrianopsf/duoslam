@@ -1,16 +1,20 @@
 ﻿<Window x:Class="Ev3.Mod.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Robot Modell" Height="620" Width="880">
+        Title="Robot Modell" Height="703" Width="880">
     <Grid>
         <StackPanel HorizontalAlignment="Left">
-            <Canvas Width="600" Height="600" Background="LightYellow" x:Name="canvRobot"></Canvas>
+            <Canvas Width="600" Height="600" Background="LightYellow" x:Name="canvRobot" MouseDown="canvRobot_MouseDown" MouseMove="canvRobot_MouseMove"  MouseUp="canvRobot_MouseUp" Margin="4">
+                    <Canvas.RenderTransform>
+                        <ScaleTransform x:Name="st"/>
+                    </Canvas.RenderTransform>
+                </Canvas>
         </StackPanel>
         <StackPanel HorizontalAlignment="Right" Width="200">
-            <TextBlock FontSize="30" x:Name="txVl">Vl:</TextBlock>
-            <Slider Minimum="-100" Maximum="100" x:Name="sliderVLeft" Value="80" ValueChanged="sliderVLeftChanged" Foreground="Black"></Slider>
-            <TextBlock FontSize="30" x:Name="txVr">Vr:</TextBlock>
-            <Slider Minimum="-100" Maximum="100" x:Name="sliderVRight" Value="10" ValueChanged="sliderVRightChanged"></Slider>
+            <TextBlock FontSize="30" Text="{Binding ElementName=sliderVLeft, Path=Value, StringFormat={}Vl: {0:F1}}" />
+            <Slider Minimum="-100" Maximum="100" x:Name="sliderVLeft" Value="10" ValueChanged="sliderVLeftChanged" Foreground="Black" />
+            <TextBlock FontSize="30" Text="{Binding ElementName=sliderVRight, Path=Value, StringFormat={}Vl: {0:F1}}" />
+            <Slider Minimum="-100" Maximum="100" x:Name="sliderVRight" Value="2" ValueChanged="sliderVRightChanged"></Slider>
             <Grid>
                 <Button Width="50" Height="50" Margin="4" Grid.Column="0" Content="Straight" Click="StraightClick"/>
                 <Button Width="50" Height="50" Margin="4" Grid.Column="1" Content="Left" Click="LeftClick"/>
@@ -23,29 +27,27 @@
                 </Grid.ColumnDefinitions>
             </Grid>
             <Grid>
-                <Slider Minimum="0.01" Maximum="4" Margin="4" x:Name="sliderDeltaT" ValueChanged="sliderDeltaTChanged" Grid.Column="0"></Slider>
-                <TextBlock Width="50"  Margin="4" Grid.Column="1" x:Name="txDeltaT" >1dT</TextBlock>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="160"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-            </Grid>
-            <Grid>
-                <Slider Minimum="0" Maximum="100" Margin="4" x:Name="sliderLoop" ValueChanged="sliderLoopChanged" Grid.Column="0"></Slider>
-                <TextBlock Width="50"  Margin="4" Grid.Column="1" x:Name="txLoop"></TextBlock>
+                <Slider Minimum="0" Maximum="100" Margin="4" x:Name="sliderLoop" Grid.Column="0" ValueChanged="sliderLoop_ValueChanged" IsSnapToTickEnabled="True" TickFrequency="1"/>
+                <TextBlock Width="50"  Margin="4" Grid.Column="1" Text="{Binding ElementName=sliderLoop, Path=Value}" />
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="160"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
             </Grid>
             <Button Click="GoClick" Height="60" Margin="6" Background="Tomato" FontSize="15">GO!</Button>
-            <TextBlock FontSize="20" x:Name="txSzog"></TextBlock>
             <TextBlock FontSize="20" x:Name="txX">X:</TextBlock>
-            <TextBlock FontSize="20" x:Name="txXI">XI:</TextBlock>            
             <TextBlock FontSize="20" x:Name="txY">Y:</TextBlock>
-            <TextBlock FontSize="20" x:Name="txR">R:</TextBlock>
+            <TextBlock FontSize="20" x:Name="txT">T:</TextBlock>
             <TextBlock FontSize="20" x:Name="txO">O:</TextBlock>
             <Button Click="ResetClick" Height="60" Margin="6" Width="80">Reset</Button>
+            <Grid>
+                <Button x:Name="ZoomIn" Content="ZoomIn" Click="ZoomIn_Click" Margin="4"/>
+                <Button x:Name="ZoomOUt" Grid.Column="1" Content="ZoomOut" Click="ZoomOUt_Click" Margin="4"/>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+            </Grid>
         </StackPanel>
 
     </Grid>

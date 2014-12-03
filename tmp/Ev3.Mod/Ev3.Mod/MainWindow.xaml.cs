@@ -20,14 +20,15 @@ namespace Ev3.Mod
     /// </summary>
     public partial class MainWindow : Window
     {
-        RobotModel rm = new RobotModel(300, 300, 10);
+        RobotModel rm = new RobotModel(300, 300, 0);
+        double scaleRate = 1.1;
+        double mouseVerticalPosition = 0;
+        double mouseHorizontalPosition = 0;
+        bool isMouseCaptured = false;
         public MainWindow()
         {
             InitializeComponent();
-            //DrawRobot(rm.x, rm.y, rm.GetThetaRad());
-            txVl.Text = "Vl: " + rm.vl;
-            txVr.Text = "Vr: " + rm.vr;
-            txSzog.Text = "Theta: " + rm.GetThetaDeg();
+            rm.Reset();
             sliderLoop.Minimum = 1;
         }
 
@@ -53,9 +54,8 @@ namespace Ev3.Mod
             });
             txX.Text = "x: " + rm.x.ToString();
             txY.Text = "y: " + rm.y.ToString();
-            txR.Text = "r: " + rm.r.ToString();
+            txT.Text = "θ: " + rm.GetThetaDeg();
             txO.Text = "o: " + rm.GetOmegDeg().ToString();
-            txXI.Text = "x: " + rm.GetIccX().ToString() + " icc";
         }
 
         private void GoClick(object sender, RoutedEventArgs e)
@@ -63,43 +63,23 @@ namespace Ev3.Mod
             for (int i=0; i < (int)sliderLoop.Value; i++)
             {
                 rm.Update((int)sliderVLeft.Value, (int)sliderVRight.Value);
-                txSzog.Text = "Theta: " + rm.GetThetaDeg();
                 DrawRobot(rm.x, rm.y, rm.GetThetaRad());
             }
         }
 
         private void sliderVLeftChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            txVl.Text = "Vl: " + (int)sliderVLeft.Value;
             rm.vl = (int)sliderVLeft.Value;
-            //System.Diagnostics.Debug.Write("xx");
         }
         private void sliderVRightChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            txVr.Text = "Vr: " + (int)sliderVRight.Value;
+            //txVr.Text = "Vr: " + (int)sliderVRight.Value;
             rm.vr = (int)sliderVRight.Value;
         }
-
-        private void sliderDeltaTChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-        {
-            try
-            {
-                txDeltaT.Text = String.Format("{0,12:C2}", sliderDeltaT.Value);
-                rm.deltaT = sliderDeltaT.Value;
-            }
-            catch { }//todo
-        }
-        private void sliderLoopChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-        {
-            txLoop.Text = (int)sliderLoop.Value + "L";
-        }
-
         private void StraightClick(object sender, RoutedEventArgs e)
         {
             sliderVLeft.Value = (int)sliderVLeft.Value;
             sliderVRight.Value = (int)sliderVLeft.Value;
-            txVl.Text = "Vl: " + (int)sliderVLeft.Value;
-            txVr.Text = "Vr: " + (int)sliderVRight.Value;
         }
 
         private void LeftClick(object sender, RoutedEventArgs e)
@@ -107,8 +87,6 @@ namespace Ev3.Mod
             if (sliderVLeft.Value > 0)
                 sliderVLeft.Value = -1 * (int)sliderVLeft.Value;
             sliderVRight.Value = -1 * (int)sliderVLeft.Value;
-            txVl.Text = "Vl: " + (int)sliderVLeft.Value;
-            txVr.Text = "Vr: " + (int)sliderVRight.Value;
         }
 
         private void RightClick(object sender, RoutedEventArgs e)
@@ -116,13 +94,61 @@ namespace Ev3.Mod
             if (sliderVLeft.Value < 0)
                 sliderVLeft.Value = -1 * (int)sliderVLeft.Value;
             sliderVRight.Value = -1 * (int)sliderVLeft.Value;
-            txVl.Text = "Vl: " + (int)sliderVLeft.Value;
-            txVr.Text = "Vr: " + (int)sliderVRight.Value;
         }
         private void ResetClick(object sender, RoutedEventArgs e)
         {
             rm.Reset();
             canvRobot.Children.Clear();
+            txX.Text = "x: " + rm.x.ToString();
+            txY.Text = "y: " + rm.y.ToString();
+            txT.Text = "θ: " + rm.GetThetaDeg();
+            txO.Text = "o: " + rm.GetOmegDeg().ToString();
         }
+        private void ZoomIn_Click(object sender, RoutedEventArgs e)
+        {
+            st.ScaleX *= scaleRate;
+            st.ScaleY *= scaleRate;
+        }
+
+        private void ZoomOUt_Click(object sender, RoutedEventArgs e)
+        {
+            st.ScaleX /= scaleRate;
+            st.ScaleY /= scaleRate;
+        }
+
+        private void canvRobot_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            isMouseCaptured = true;
+            canvRobot.CaptureMouse();
+            mouseVerticalPosition = e.GetPosition(null).Y;
+            mouseHorizontalPosition = e.GetPosition(null).X;
+        }
+        private void canvRobot_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            isMouseCaptured = false;
+            canvRobot.ReleaseMouseCapture();
+            mouseVerticalPosition = -1;
+            mouseHorizontalPosition = -1;
+        }
+        private void canvRobot_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (isMouseCaptured)
+            {
+                // Calculate the current position of the object. (null)  >> Parent ?
+                double deltaV = e.GetPosition(null).X - mouseVerticalPosition;
+                double deltaH = e.GetPosition(null).Y - mouseHorizontalPosition;
+                double newTop = deltaV + (double)canvRobot.GetValue(Canvas.TopProperty);
+                double newLeft = deltaH + (double)canvRobot.GetValue(Canvas.LeftProperty);
+                // Set new position of object.
+                canvRobot.Margin = new Thickness(deltaV, deltaH, 0, 0);
+                System.Diagnostics.Debug.WriteLine(deltaV + " " + deltaH);
+            }
+        }
+
+        private void sliderLoop_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+
+        }
+
     }
 }

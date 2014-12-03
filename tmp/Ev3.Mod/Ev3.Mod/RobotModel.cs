@@ -4,56 +4,58 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media;
+using System.Diagnostics;
 
 namespace Ev3.Mod
 {
-    //todo refactor
     class RobotModel
     {
         private double _x;
         private double _y;
         private double _theta;
         /// <summary>
-        /// A robot bal kerekének aktuális sebessége
+        /// The speed of the right wheel
         /// </summary>
         private double _vl;
         /// <summary>
-        /// A robot jobb kerekének aktuális sebessége
+        /// The speed of the right wheel
         /// </summary>
         private double _vr;
         /// <summary>
-        /// ICC - Instantaneous Center of Curvatur, X Pillanatnyi fordulási középpont
+        /// The speed of the robot
         /// </summary>
-        private double _iccx;
+        private double _v;
         /// <summary>
-        /// ICC - Instantaneous Center of Curvatur, Y Pillanatnyi fordulási középpont
+        /// The distance between the wheels [cm]
         /// </summary>
-        private double _iccy;
         private double _l;
+        /// <summary>
+        /// The wheel radius [cm] //not used
+        /// </summary>
         private double _r;
+        /// <summary>
+        /// Angular velocity of the wheel
+        /// </summary>
         private double _omega;
-        public double[,] m = new double[3, 1];
+        /// <summary>
+        /// ΔT (For the sake of simplicity ΔT = 1 sec )
+        /// </summary>
         private double _deltaT;
         /// <summary>
-        /// A robot modell példányosítása három paraméterrel
+        /// Instance constructor of the robot with 3 parameters
         /// </summary>
         /// <param name="x">X poz</param>
         /// <param name="y">Y poz</param>
-        /// <param name="theta">Orientáció</param>
+        /// <param name="theta">Orientation - Theta</param>
         public RobotModel(double x, double y, double theta)
         {
             _x = x;
             _y = y;
             _theta = theta;
             _vl = 10;
-            _vr = 9;
-            _r = 100;
-            _iccx = _x;
-            _iccy = _y;
-            m[0, 0] = m[1, 0] = m[2, 0] = 0;
-            _l = 1.2;
-            _omega = 0.1;
-            _deltaT = 0.1;
+            _vr = 2;
+            _l = 80; //distance [cm]
+            _deltaT = 1; //[sec]
 
         }
         public void Reset()
@@ -62,16 +64,12 @@ namespace Ev3.Mod
             _y = 300;
             _theta = 0;
             _vl = 10;
-            _vr = 9;
-            _r = 100;
-            _iccx = _x;
-            _iccy = _y;
-            m[0, 0] = m[1, 0] = m[2, 0] = 0;
-            _l = 1.2;
-            _omega = 0.1;
-            _deltaT = 0.1;
+            _vr = 2;
+            _l = 80; //distance [cm]
+            _deltaT = 1; //[sec]
 
         }
+        #region Get and Set - Simple
         public double x
         {
             get { return _x; }
@@ -107,6 +105,9 @@ namespace Ev3.Mod
             get { return _deltaT; }
             set { _deltaT = value; }
         }
+        #endregion
+
+        #region Get and Set - Calculated
         public double GetThetaDeg()
         {
             return _theta % (2 * Math.PI);
@@ -128,26 +129,6 @@ namespace Ev3.Mod
             if (_theta < 0) _theta += 360;
             _theta = _theta % 360;
         }
-        /// <summary>
-        /// ICC - Instantaneous Center of Curvatur, X Pillanatnyi fordulási középpont
-        /// </summary>
-        /// <returns></returns>
-        public double GetIccX()
-        {
-            _r = (_l / 2) * ((_vl + _vr) / (_vr - _vl));
-            _iccx = _x - _r * Math.Sin(GetThetaRad());
-            return _iccx;
-        }
-        /// <summary>
-        /// ICC - Instantaneous Center of Curvatur, Y Pillanatnyi fordulási középpont
-        /// </summary>
-        /// <returns></returns>
-        public double GetIccY()
-        {
-            _r = ((_l / 2) * ((_vl + _vr) / (_vr - _vl)))*1;//nagyon kicsi!!!
-            _iccy = (_y + _r * Math.Cos(GetThetaRad()));
-            return _iccy;
-        }
         public double GetOmegaRad()
         {
             _omega = (_vr - _vl) / _l;
@@ -158,56 +139,20 @@ namespace Ev3.Mod
             _omega = (_vr - _vl) / _l;
             return _omega;
         }
+        #endregion
         public void Update(double vl, double vr)
         {
-            //todo works, but needs to be refactored
-            //_vr = Math.Round(vr);
-            //_vl = Math.Round(vl);
-            if (_vr == _vl)
-            {
-                _x = _x + _vr * Math.Cos(GetThetaRad()) * _deltaT; //overshoot here! todo:fix
-                _y = _y + _vr * Math.Sin(GetThetaRad()) * _deltaT;
-            }
-            else if (_vl == -_vr || _vr == -_vl)
-            {
-                AddThetaDeg(2 * _vr * _deltaT / _l);
-            }
-            
-            else
-            {
-                double ix = GetIccX();
-                double iy = GetIccY();
-                double o = GetOmegaRad();
-                double[,] a = new double[3, 3];
-                double[,] b = new double[3, 1];
-                double[,] c = new double[3, 1];
-                a[0, 0] = Math.Cos(o*_deltaT);
-                a[0, 1] = -1 * Math.Sin(o*_deltaT);
-                a[1, 0] = Math.Sin(o*_deltaT);
-                a[1, 1] = Math.Cos(o*_deltaT);
-                a[2, 2] = 1;
-                b[0, 0] = _x - ix;
-                b[1, 0] = _y - iy;
-                b[2, 0] = _theta; ///?? thetarad  vagy _theta % (2 * Math.PI)
-                c[0, 0] = ix;
-                c[1, 0] = iy;
-                c[2, 0] = o*_deltaT;
-                m = MultiplyMatrix(a, b);
-                m = AddMatrix(c, m);
-                System.Diagnostics.Debug.Write("A\n");
-                MatrixDisplay(a);
-                System.Diagnostics.Debug.Write("B\n");
-                MatrixDisplay(b);
-                System.Diagnostics.Debug.Write("C\n");
-                MatrixDisplay(c);
-                System.Diagnostics.Debug.Write("M\n");
-                MatrixDisplay(m);
-                _x = m[0, 0];
-                _y = m[1, 0];
-                _theta = m[2, 0];
-            }
+            //the linear and the angular speed of the robot
+            _v = 0.5 * (_vr + _vl);
+            _omega = (_vr - _vl) / _l;
+            // the orientation and position of the robot
+            AddThetaDeg(_omega * _deltaT);
+            _x = _x + _v * Math.Cos(GetThetaRad()) * _deltaT;
+            _y = _y + _v * Math.Sin(GetThetaRad()) * _deltaT;
+            Debug.WriteLine("v:["+ _vl + "," + _vr + "]" +" x: " + _x + " y: " + _y + " theta: " + _theta + " omega: " + _omega);
         }
 
+        #region MatrixOperations
         public void MatrixDisplay(double[,] m)
         {
             string s = "";
@@ -233,7 +178,7 @@ namespace Ev3.Mod
                     for (int j = 0; j < c.GetLength(1); j++)
                     {
                         c[i, j] = 0;
-                        for (int k = 0; k < a.GetLength(1); k++) 
+                        for (int k = 0; k < a.GetLength(1); k++)
                             c[i, j] = c[i, j] + a[i, k] * b[k, j];
                     }
                 }
@@ -257,5 +202,6 @@ namespace Ev3.Mod
             }
             return c;
         }
+        #endregion
     }
 }
