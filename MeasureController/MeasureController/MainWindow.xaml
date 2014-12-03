@@ -23,8 +23,6 @@
                 <Button x:Name="RobotLeftButton" Visibility="{Binding IsConnect, Converter={StaticResource converter}}" Content="RobotLeft" Width="75" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" />
                 <Button x:Name="RobotRightButton" Visibility="{Binding IsConnect, Converter={StaticResource converter}}" Content="RobotRight" Width="75" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" />
             </StackPanel>
-            <Button x:Name="InitButton" Visibility="{Binding IsConnect,Converter={StaticResource converter}}" Content="Initialize" Width="150" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" />
-            <Button x:Name="ScanInitButton" Visibility="{Binding IsConnect,Converter={StaticResource converter}}" Content="scan allappozicio" Width="150" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" />
             <Button x:Name="ScanButton" Visibility="{Binding IsConnect,Converter={StaticResource converter}}" Content="scan" Width="150" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" />
             <TextBox TextWrapping="Wrap" Width="150" VerticalAlignment="Center" x:Name="SaveFilePathText" Text="C:\" />
             <TextBox TextWrapping="Wrap" Width="150" VerticalAlignment="Center" x:Name="SaveFileNameText" />

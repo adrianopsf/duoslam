@@ -24,11 +24,11 @@ namespace MeasureController
         {
             mainPageViewModel = new MainPageViewModel();
             DataContext = mainPageViewModel;
-            InitButton.Click += mainPageViewModel.StartScan;
+           
             ConnectButton.Click += mainPageViewModel.ConnectToRobot;
             RobotRightButton.Click += mainPageViewModel.TurnRight;
             ScanButton.Click += mainPageViewModel.Scan2;
-            ScanInitButton.Click += mainPageViewModel.MoveScannarToStartposition;
+            
             RobotLeftButton.Click += mainPageViewModel.TurnLeft;
         }
 
