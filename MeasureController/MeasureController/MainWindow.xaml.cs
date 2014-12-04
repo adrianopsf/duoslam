@@ -28,7 +28,8 @@ namespace MeasureController
             ConnectButton.Click += mainPageViewModel.ConnectToRobot;
             RobotRightButton.Click += mainPageViewModel.TurnRight;
             ScanButton.Click += mainPageViewModel.Scan2;
-            
+            StartButton.Click += mainPageViewModel.StartRobot;
+            StopButton.Click += mainPageViewModel.StopRobot;
             RobotLeftButton.Click += mainPageViewModel.TurnLeft;
         }
 
@@ -90,5 +91,7 @@ namespace MeasureController
         }
 
         #endregion Helper Methods
+
+       
     }
 }

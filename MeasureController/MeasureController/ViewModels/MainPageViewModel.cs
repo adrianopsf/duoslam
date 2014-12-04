@@ -48,6 +48,8 @@ namespace MeasureController.ViewModels
             }
         }
 
+        public Boolean stop;
+
         #endregion PublicMembers
 
         #region PrivateMembers
@@ -137,47 +139,82 @@ namespace MeasureController.ViewModels
         // ebből tudjunk vmit kiolvasni
         public async void Scan2(object sender, RoutedEventArgs e)
         {
-            startPositionOfSensorMotor = MyBrick.Ports[InputPort.A].RawValue;
+            
             MyBrick.BrickChanged += MyBrick_BrickChanged;
             await Task.Delay(1500);
+            startPositionOfSensorMotor = MyBrick.Ports[InputPort.A].RawValue;
+            await scanPart(50);
+            await scanPart(-50);
+            await scanPart(-50);
+            await scanPart(50);
+            FilterMeasureList();
+          
+        }
+
+        public async Task Scan()
+        {
+           
+            MyBrick.BrickChanged += MyBrick_BrickChanged;
+            await Task.Delay(1500);
+            startPositionOfSensorMotor = MyBrick.Ports[InputPort.A].RawValue;
             await scanPart(50);
             await scanPart(-50);
             await scanPart(-50);
             await scanPart(50);
             FilterMeasureList();
 
-            Debug.WriteLine("SEMMI");
-          
         }
-
         public void FilterMeasureList()
         {
-            Debug.WriteLine("Mert adatok:");
-            foreach (var item in MeasureList)
-            {
-                Debug.WriteLine(item.SensorMotorPosition);
-            }
+           
             for (int i = 0; i < MeasureList.Count; i++)
             {
                 for (int j = 0; j < MeasureList.Count; j++)
                 {
                     if (i != j)
-                    {
+                    { 
                         if (MeasureList[j].SensorMotorPosition >= MeasureList[i].SensorMotorPosition - 5 && MeasureList[j].SensorMotorPosition <= MeasureList[i].SensorMotorPosition + 5)
                         {
                             MeasureList.Remove(MeasureList[j]);
+                            j--;
+                            
                         }
                     }
                 }
             }
-            Debug.WriteLine("Szurt adatok:");
-            foreach (var item in MeasureList)
+           
+        }
+        //at this point, the robot is scanning and select the distance ahead, and aftar that write it to the output console
+        // TODO: if this distance is under 40, the robot  turn
+        // TODO: turn decision methot
+        // TODO: rescan & decision again
+        // TODO: data back to the UI
+        public async  void StartRobot(object sender, RoutedEventArgs e)
+        {
+            stop = false;
+            float midDistance = -1;
+            while (!stop)
             {
-                Debug.WriteLine(item.SensorMotorPosition);
+
+                await Scan();
+                Debug.WriteLine(startPositionOfSensorMotor);
+                foreach (var measures in MeasureList)
+                {
+                    if (measures.SensorMotorPosition >= startPositionOfSensorMotor - 5 && measures.SensorMotorPosition <= startPositionOfSensorMotor + 5)
+                    {
+                         midDistance = measures.SensorDistance;
+                        Debug.WriteLine("Tavolsag: "+midDistance+ "fok"+measures.SensorMotorPosition);
+                        MeasureList.Clear();
+                        break;
+                    }
+                }
             }
         }
 
-  
+        public void StopRobot(object sender, RoutedEventArgs e)
+        {
+            stop = true;
+        }
 
         #endregion ClickEvents
 
@@ -225,5 +262,6 @@ namespace MeasureController.ViewModels
         }
 
         #endregion NotifyPropertyCangedEventHandler
+    
     }
 }

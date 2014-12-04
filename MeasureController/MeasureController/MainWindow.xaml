@@ -23,7 +23,9 @@
                 <Button x:Name="RobotLeftButton" Visibility="{Binding IsConnect, Converter={StaticResource converter}}" Content="RobotLeft" Width="75" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" />
                 <Button x:Name="RobotRightButton" Visibility="{Binding IsConnect, Converter={StaticResource converter}}" Content="RobotRight" Width="75" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" />
             </StackPanel>
-            <Button x:Name="ScanButton" Visibility="{Binding IsConnect,Converter={StaticResource converter}}" Content="scan" Width="150" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" />
+            <Button x:Name="ScanButton" Visibility="{Binding IsConnect,Converter={StaticResource converter}}" Content="Scan" Width="150" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" />
+            <Button x:Name="StartButton" Visibility="{Binding IsConnect,Converter={StaticResource converter}}" Content="StartRobot" Width="150" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" />
+            <Button x:Name="StopButton" Visibility="{Binding IsConnect,Converter={StaticResource converter}}" Content="StopRobot" Width="150" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" />
             <TextBox TextWrapping="Wrap" Width="150" VerticalAlignment="Center" x:Name="SaveFilePathText" Text="C:\" />
             <TextBox TextWrapping="Wrap" Width="150" VerticalAlignment="Center" x:Name="SaveFileNameText" />
             <Button Content="Save" Height="30" Width="150" Click="SaveButtonClick" />
