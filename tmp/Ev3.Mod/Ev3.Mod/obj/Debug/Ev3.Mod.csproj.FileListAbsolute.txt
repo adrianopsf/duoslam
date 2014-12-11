@@ -40,3 +40,6 @@ C:\DuoSlam\tmp\Ev3.Mod\Ev3.Mod\obj\Debug\Ev3.Mod.csproj.GenerateResource.Cache
 D:\LEGOROBOT\tmp\Ev3.Mod\Ev3.Mod\bin\Debug\Ev3.Mod.exe.config
 D:\LEGOROBOT\tmp\Ev3.Mod\Ev3.Mod\obj\Debug\Ev3.Mod.exe
 D:\LEGOROBOT\tmp\Ev3.Mod\Ev3.Mod\obj\Debug\Ev3.Mod.pdb
+C:\LegoRobot_2\tmp\Ev3.Mod\Ev3.Mod\bin\Debug\Ev3.Mod.exe.config
+C:\LegoRobot_2\tmp\Ev3.Mod\Ev3.Mod\obj\Debug\Ev3.Mod.exe
+C:\LegoRobot_2\tmp\Ev3.Mod\Ev3.Mod\obj\Debug\Ev3.Mod.pdb

@@ -24,13 +24,16 @@ namespace MeasureController
         {
             mainPageViewModel = new MainPageViewModel();
             DataContext = mainPageViewModel;
-           
+
             ConnectButton.Click += mainPageViewModel.ConnectToRobot;
             RobotRightButton.Click += mainPageViewModel.TurnRight;
             ScanButton.Click += mainPageViewModel.Scan2;
             StartButton.Click += mainPageViewModel.StartRobot;
             StopButton.Click += mainPageViewModel.StopRobot;
             RobotLeftButton.Click += mainPageViewModel.TurnLeft;
+
+            StepPowerText.Text = Helper.Config.MotorStep.ToString();
+            StepTimeText.Text = Helper.Config.MotorPowerTime.ToString();
         }
 
         #region Click Events
@@ -92,6 +95,17 @@ namespace MeasureController
 
         #endregion Helper Methods
 
-       
+        private void SaveConfigClick(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Helper.Config.MotorStep = uint.Parse(StepPowerText.Text);
+                Helper.Config.MotorPowerTime = uint.Parse(StepTimeText.Text);
+            }
+            catch
+            {
+                MessageBox.Show("Please, insert number!");
+            }
+        }
     }
 }

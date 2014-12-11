@@ -14,6 +14,8 @@ namespace MeasureController.ViewModels
     {
         #region PublicMembers
 
+        public bool IsConnect { get; set; }
+
         public List<Models.Measure> MeasureList { get; set; }
 
         public List<FilesModel> SavedFilesList
@@ -54,13 +56,15 @@ namespace MeasureController.ViewModels
 
         #region PrivateMembers
 
+        private float changing = 0;
+
+        private List<Models.Measure> CacheMeasureList;
+
         private List<FilesModel> savedFilesList;
 
         private float startPositionOfSensorMotor;
 
         private string connectionText;
-
-        public bool IsConnect { get; set; }
 
         private Brick MyBrick;
 
@@ -76,13 +80,52 @@ namespace MeasureController.ViewModels
 
         #region HelperMethods
 
-  
-
-        private void MyBrick_BrickChanged(object sender, BrickChangedEventArgs e)
+        public async Task Scan()
         {
+            //CacheMeasureList = new List<Measure>();
+            MyBrick.BrickChanged += MyBrick_BrickChanged;
+            await Task.Delay(1500);
+            startPositionOfSensorMotor = MyBrick.Ports[InputPort.A].RawValue;
+            await scanPart(50);
+            await scanPart(-50);
+            await scanPart(-50);
+            await scanPart(50);            
+        }
 
-            Models.Measure measure = new Models.Measure() { SensorMotorPosition = e.Ports[InputPort.A].RawValue, SensorDistance = e.Ports[InputPort.One].SIValue };
-            MeasureList.Add(measure);
+        private async Task<bool> IsTurnLeft()
+        {
+            float summLeft = 0;
+            float summRight = 0;
+            int countLeft = 0;
+            int countRight = 0;
+            float avgLeft = 0;
+            float avgRight = 0;
+            foreach (var item in CacheMeasureList)
+            {
+                if (item.SensorMotorPosition < startPositionOfSensorMotor - 10)
+                {
+                    summLeft = summLeft + item.SensorDistance;
+                    countLeft++;
+                }
+                else if (item.SensorMotorPosition > startPositionOfSensorMotor + 10)
+                {
+                    summRight = summRight + item.SensorDistance;
+                    countRight++;
+                }
+            }
+            avgLeft = summLeft / countLeft;
+            avgRight = summRight / countRight;
+            if (countLeft == 0 || countRight == 0)
+            {
+                await Scan();
+                return await IsTurnLeft();
+            }
+
+            if (avgLeft > avgRight)
+            {
+                return true;
+            }
+            return false;
         }
 
         public void ControllDirection(int power)
@@ -95,13 +138,17 @@ namespace MeasureController.ViewModels
         /// </summary>
         public async void GoForwardOneUnit()
         {
-            MyBrick.BatchCommand.TurnMotorAtPowerForTime(OutputPort.B, 70, 950, true);
-            MyBrick.BatchCommand.TurnMotorAtPowerForTime(OutputPort.C, 70, 950, true);
+            MyBrick.BatchCommand.TurnMotorAtPowerForTime(OutputPort.B, 70, Helper.Config.MotorPowerTime, true);
+            MyBrick.BatchCommand.TurnMotorAtPowerForTime(OutputPort.C, 70, Helper.Config.MotorPowerTime, true);
             await MyBrick.BatchCommand.SendCommandAsync();
             MyBrick.BrickChanged += MyBrick_BrickChanged;
         }
 
-   
+        private async Task scanPart(int power)
+        {
+            await MyBrick.DirectCommand.StepMotorAtPowerAsync(OutputPort.A, power, 60, true);
+            await Task.Delay(1500);
+        }
 
         public void Stop()
         {
@@ -109,37 +156,55 @@ namespace MeasureController.ViewModels
             MyBrick.DirectCommand.TurnMotorAtPowerAsync(OutputPort.C, 0);
         }
 
+        private void FilterMeasureList(List<Measure> list)
+        {
+            for (int i = 0; i < list.Count; i++)
+            {
+                for (int j = 0; j < list.Count; j++)
+                {
+                    if (i != j)
+                    {
+                        if (list[j].SensorMotorPosition >= list[i].SensorMotorPosition - 5 && list[j].SensorMotorPosition <= list[i].SensorMotorPosition + 5)
+                        {
+                            list.Remove(list[j]);
+                            j--;
+
+                        }
+                    }
+                }
+            }
+        }
+
         #endregion HelperMethods
 
         #region ClickEvents
 
+        private void MyBrick_BrickChanged(object sender, BrickChangedEventArgs e)
+        {
+            Models.Measure measure = new Models.Measure() { RobotChangeing = changing, SensorMotorPosition = e.Ports[InputPort.A].RawValue, SensorDistance = e.Ports[InputPort.One].SIValue };
+            //MeasureList.Add(measure);
+            CacheMeasureList.Add(measure);
+        }
+
         public async void TurnRight(object sender, RoutedEventArgs e)
         {
-            MyBrick.BatchCommand.StepMotorAtPower(OutputPort.B, 40, 239, true);
-            MyBrick.BatchCommand.StepMotorAtPower(OutputPort.C, -40, 239, true);
+            MyBrick.BatchCommand.StepMotorAtPower(OutputPort.B, 40, Helper.Config.MotorStep, true);
+            MyBrick.BatchCommand.StepMotorAtPower(OutputPort.C, -40, Helper.Config.MotorStep, true);
             await MyBrick.BatchCommand.SendCommandAsync();
         }
 
         public async void TurnLeft(object sender, RoutedEventArgs e)
         {
-            MyBrick.BatchCommand.StepMotorAtPower(OutputPort.B, -40, 239, true);
-            MyBrick.BatchCommand.StepMotorAtPower(OutputPort.C, 40, 239, true);
+            MyBrick.BatchCommand.StepMotorAtPower(OutputPort.B, -40, Helper.Config.MotorStep, true);
+            MyBrick.BatchCommand.StepMotorAtPower(OutputPort.C, 40, Helper.Config.MotorStep, true);
             await MyBrick.BatchCommand.SendCommandAsync();
-        }
-
-
-        public async Task scanPart(int power)
-        {
-
-            await MyBrick.DirectCommand.StepMotorAtPowerAsync(OutputPort.A, power, 60, true);
-            await Task.Delay(1500);
         }
 
         //cél az hogy középen tőle egy bizonyos szögben jobbra és balra mérjen egyet és 
         // ebből tudjunk vmit kiolvasni
         public async void Scan2(object sender, RoutedEventArgs e)
         {
-            
+            CacheMeasureList = new List<Measure>();
             MyBrick.BrickChanged += MyBrick_BrickChanged;
             await Task.Delay(1500);
             startPositionOfSensorMotor = MyBrick.Ports[InputPort.A].RawValue;
@@ -147,73 +212,80 @@ namespace MeasureController.ViewModels
             await scanPart(-50);
             await scanPart(-50);
             await scanPart(50);
-            FilterMeasureList();
-          
+            //FilterMeasureList(CacheMeasureList);
         }
 
-        public async Task Scan()
-        {
-           
-            MyBrick.BrickChanged += MyBrick_BrickChanged;
-            await Task.Delay(1500);
-            startPositionOfSensorMotor = MyBrick.Ports[InputPort.A].RawValue;
-            await scanPart(50);
-            await scanPart(-50);
-            await scanPart(-50);
-            await scanPart(50);
-            FilterMeasureList();
-
-        }
-        public void FilterMeasureList()
-        {
-           
-            for (int i = 0; i < MeasureList.Count; i++)
-            {
-                for (int j = 0; j < MeasureList.Count; j++)
-                {
-                    if (i != j)
-                    { 
-                        if (MeasureList[j].SensorMotorPosition >= MeasureList[i].SensorMotorPosition - 5 && MeasureList[j].SensorMotorPosition <= MeasureList[i].SensorMotorPosition + 5)
-                        {
-                            MeasureList.Remove(MeasureList[j]);
-                            j--;
-                            
-                        }
-                    }
-                }
-            }
-           
-        }
         //at this point, the robot is scanning and select the distance ahead, and aftar that write it to the output console
         // TODO: if this distance is under 40, the robot  turn
         // TODO: turn decision methot
         // TODO: rescan & decision again
         // TODO: data back to the UI
-        public async  void StartRobot(object sender, RoutedEventArgs e)
+        public async void StartRobot(object sender, RoutedEventArgs e)
         {
+            CacheMeasureList = new List<Measure>();
             stop = false;
+            bool b = false;
             float midDistance = -1;
             while (!stop)
             {
-
                 await Scan();
                 Debug.WriteLine(startPositionOfSensorMotor);
-                foreach (var measures in MeasureList)
+                foreach (var measures in CacheMeasureList)
                 {
                     if (measures.SensorMotorPosition >= startPositionOfSensorMotor - 5 && measures.SensorMotorPosition <= startPositionOfSensorMotor + 5)
                     {
-                         midDistance = measures.SensorDistance;
-                        Debug.WriteLine("Tavolsag: "+midDistance+ "fok"+measures.SensorMotorPosition);
-                        MeasureList.Clear();
+                        midDistance = measures.SensorDistance;
+                        Debug.WriteLine("Tavolsag: " + midDistance + "fok" + measures.SensorMotorPosition);
+
                         break;
                     }
                 }
+                if (midDistance > 35)
+                {
+                    GoForwardOneUnit();
+                    FilterMeasureList(CacheMeasureList);
+                    MeasureList.AddRange(CacheMeasureList);
+                    CacheMeasureList.Clear();
+                    changing = b ? 5 : -5;
+                    b = !b;          
+
+
+                }
+                else
+                {
+                    if (await IsTurnLeft())
+                    {
+                        MyBrick.BatchCommand.StepMotorAtPower(OutputPort.B, -40, 239, true);
+                        MyBrick.BatchCommand.StepMotorAtPower(OutputPort.C, 40, 239, true);
+                        await MyBrick.BatchCommand.SendCommandAsync();
+                        changing = b ? 1 : -1;
+                        b = !b;
+                        FilterMeasureList(CacheMeasureList);
+                        MeasureList.AddRange(CacheMeasureList);
+                        CacheMeasureList.Clear();
+
+                    }
+                    else
+                    {
+                        MyBrick.BatchCommand.StepMotorAtPower(OutputPort.B, 40, 239, true);
+                        MyBrick.BatchCommand.StepMotorAtPower(OutputPort.C, -40, 239, true);
+                        await MyBrick.BatchCommand.SendCommandAsync();
+                        changing = b ? 2 : -2;
+                        b = !b;
+                        FilterMeasureList(CacheMeasureList);
+                        MeasureList.AddRange(CacheMeasureList);
+                        CacheMeasureList.Clear();
+
+                    }
+                }
             }
+            //MeasureController.Helper.FileHandlerHelper.SaveListToTXTFile(MeasureList,"meres","C:\Users\Hallgato\Documents");
         }
 
         public void StopRobot(object sender, RoutedEventArgs e)
         {
             stop = true;
+
         }
 
         #endregion ClickEvents
@@ -262,6 +334,6 @@ namespace MeasureController.ViewModels
         }
 
         #endregion NotifyPropertyCangedEventHandler
-    
+
     }
 }
